@@ -103,7 +103,7 @@ public class MFiltraLote {
 		
 		for(int j=0;j<almacenes.length;j++) {
 			
-			System.out.println(almacenes[j]+"------   ");
+			
 			
 			if(alm!=almacenes[j]) {
 				
@@ -111,11 +111,11 @@ public class MFiltraLote {
 			alm=almacenes[j];
 			rs2=mist2.executeQuery();
 			while(rs2.next()) {
-				System.out.println("entra en while");
+				
 				try {
 					if (rs2.getInt(1)==alm) {
 						contadorkg=contadorkg+rs2.getDouble(2);
-						System.out.println(contadorkg);
+						
 						
 					}
 				} catch (SQLException e) {

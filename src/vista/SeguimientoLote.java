@@ -145,10 +145,10 @@ public class SeguimientoLote extends JFrame {
 			
 				for(OLote tempLote : KgList) {
 					
-					
+					if(tempLote.getAlmacen()!=0) {
 					
 					model.addRow(new Object[] {tempLote.getAlmacen(), tempLote.getKg()});
-					
+					}
 					
 				}
 				
