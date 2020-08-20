@@ -53,7 +53,7 @@ public class MFiltraLote {
 	public List<OLote>  getkgalmacen(int lote) throws SQLException {
 		
 		
-		int [] almacenes=null;
+		int cuenta=1;
 		int i=0;
 		Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
 		
@@ -67,7 +67,15 @@ public class MFiltraLote {
 		
 		while(rs.next()) {
 			
-			almacenes[i]=rs.getInt(1);
+			cuenta++;
+			
+		}
+		
+		int [] almacenes=new int[cuenta];
+		rs=mist.executeQuery();
+		while(rs.next()) {
+			
+			 almacenes[i]=rs.getInt(1);
 		
 		
 		i++;
@@ -82,11 +90,11 @@ public class MFiltraLote {
 		
 		String sql2="SELECT ID_ALMACEN,KG FROM PROVISION WHERE LOTE=?";
 
-		PreparedStatement mist2=miconexion.prepareStatement(sql);
+		PreparedStatement mist2=miconexion.prepareStatement(sql2);
 		
-		mist.setInt(1, lote);
+		mist2.setInt(1, lote);
 		
-		ResultSet rs2=mist.executeQuery();
+		ResultSet rs2=mist2.executeQuery();
 		int alm=-1;
 		double contadorkg=0;
 		
@@ -95,17 +103,20 @@ public class MFiltraLote {
 		
 		for(int j=0;j<almacenes.length;j++) {
 			
-			if(alm!=almacenes[j]) {
-			alm=almacenes[j];
+			System.out.println(almacenes[j]+"------   ");
 			
-			while(rs.next()) {
+			if(alm!=almacenes[j]) {
 				
+				
+			alm=almacenes[j];
+			rs2=mist2.executeQuery();
+			while(rs2.next()) {
+				System.out.println("entra en while");
 				try {
-					if (rs.getInt(1)==alm) {
+					if (rs2.getInt(1)==alm) {
+						contadorkg=contadorkg+rs2.getDouble(2);
+						System.out.println(contadorkg);
 						
-						contadorkg=contadorkg+rs.getDouble(2);
-						
-						//OLote tempkg=new Olote(alm)
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -113,10 +124,10 @@ public class MFiltraLote {
 				}
 				
 				
-			}
-			OLote tempkg=new OLote(alm,contadorkg);
+			}OLote tempkg=new OLote(alm,contadorkg);
 			kgpa.add(tempkg);
 			
+			contadorkg=0;
 			}
 		}
 		
