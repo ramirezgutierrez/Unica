@@ -112,13 +112,13 @@ public class SeguimientoLote extends JFrame {
 		table = new JTable(model);
 		
 		JButton btnUbicarDeLote = new JButton("UBICAR DE LOTE");
-		/*btnUbicarDeLote.addActionListener(new ActionListener() {
+		btnUbicarDeLote.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				int lote=Integer.parseInt(tflote.getText());
 				MFiltraLote m=new MFiltraLote();
 				try {
-				double x=m.getKgLoComprados(lote);
+				double x=m.getkgcomprados(lote);
 				String cadena=String.valueOf(x);
 			
 					
@@ -127,7 +127,8 @@ public class SeguimientoLote extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+			
+		
 				MFiltraLote mp=new MFiltraLote();
 				
 				List<OLote> KgList=new ArrayList<>();{
@@ -151,8 +152,8 @@ public class SeguimientoLote extends JFrame {
 					
 				}
 				
-			}
-		});*/
+			}});
+		
 		btnUbicarDeLote.setBackground(Color.ORANGE);
 		
 		
