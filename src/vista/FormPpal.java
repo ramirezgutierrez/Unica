@@ -378,7 +378,7 @@ public class FormPpal  {
 				Almacenes alm=new Almacenes();
 				nuevoPanel(alm);
 				Desp_rec.setVisible(false);
-				
+				desplegable.setSelected(false);
 			}
 		});
 		lblAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -393,10 +393,11 @@ public class FormPpal  {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				/*AgregarOrden orden=new AgregarOrden();
+				OrdenCompra orden=new OrdenCompra();
 				nuevoPanel(orden);
 				orden.setVisible(false);
-				*/
+				Desp_rec.setVisible(false);
+				desplegable.setSelected(false);
 				
 			}
 		});
@@ -408,6 +409,19 @@ public class FormPpal  {
 		lblCompraDeGrano.setBackground(Color.ORANGE);
 		
 		JLabel lblMovimientoDeAlmacenes = new JLabel("MOVIMIENTO DE ALMACENES");
+		lblMovimientoDeAlmacenes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				OrdenTraspaso orden=new OrdenTraspaso();
+				nuevoPanel(orden);
+				orden.setVisible(false);
+				Desp_rec.setVisible(false);
+				desplegable.setSelected(false);
+				
+				
+			}
+		});
 		lblMovimientoDeAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMovimientoDeAlmacenes.setOpaque(true);
 		lblMovimientoDeAlmacenes.setForeground(Color.BLACK);
