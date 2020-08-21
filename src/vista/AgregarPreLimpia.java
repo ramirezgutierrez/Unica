@@ -56,7 +56,7 @@ public class AgregarPreLimpia extends JFrame {
 	private JTextField tfKgM1;
 	private JTextField tfKgM2;
 	private JTextField tfKgM3;
-	private JTextField tfKgM14;
+	private JTextField tfKgM4;
 	private JTextField tfKgM5;
 	private JTextField tfKgM6;
 	private JTextField tfKgM7;
@@ -167,6 +167,7 @@ public class AgregarPreLimpia extends JFrame {
 		tfNLotes.setColumns(10);
 		
 		JButton btnMezclarLotes = new JButton("MEZCLAR LOTES");
+		
 		btnMezclarLotes.setBackground(Color.ORANGE);
 		
 		JPanel panel_2 = new JPanel();
@@ -300,9 +301,9 @@ public class AgregarPreLimpia extends JFrame {
 		JLabel lblEnvaseM4 = new JLabel("New label");
 		lblEnvaseM4.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		tfKgM14 = new JTextField();
-		tfKgM14.setHorizontalAlignment(SwingConstants.RIGHT);
-		tfKgM14.setColumns(10);
+		tfKgM4 = new JTextField();
+		tfKgM4.setHorizontalAlignment(SwingConstants.RIGHT);
+		tfKgM4.setColumns(10);
 		GroupLayout gl_pAdd4 = new GroupLayout(pAdd4);
 		gl_pAdd4.setHorizontalGroup(
 			gl_pAdd4.createParallelGroup(Alignment.LEADING)
@@ -315,13 +316,13 @@ public class AgregarPreLimpia extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblEnvaseM4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(tfKgM14, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+					.addComponent(tfKgM4, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_pAdd4.setVerticalGroup(
 			gl_pAdd4.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pAdd4.createParallelGroup(Alignment.BASELINE)
 					.addComponent(cbAlmacenM4, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-					.addComponent(tfKgM14, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+					.addComponent(tfKgM4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 					.addComponent(lblEnvaseM4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addComponent(lblKgDM4, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
 				.addComponent(cbLotesM4, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
@@ -551,42 +552,45 @@ public class AgregarPreLimpia extends JFrame {
 					.addContainerGap())
 		);
 		JLabel lblEnvaseM1 = new JLabel("New label");
+		JLabel lblKgDM1 = new JLabel("New label");
 		 cbLotesM1 = new JComboBox();
+		 JComboBox cbAlmacenM1 = new JComboBox();
 		 cbLotesM1.addItemListener(new ItemListener() {
 		 	public void itemStateChanged(ItemEvent e) {
 		 	
 		 		String envase;
+		 		double kg;
 		 		if(cbLotesM1.getItemCount()!=0) {
 		 	envase=m.getEnvase(Integer.parseInt(cbLotesM1.getSelectedItem().toString()));
 		 	lblEnvaseM1.setText(envase);
 		 	
-		 	cbLotesM1.repaint();
-			pAdd1.revalidate();
 		 	
+		 	
+			
+			kg=m.getKgAlmacen(Integer.parseInt(cbLotesM1.getSelectedItem().toString()), Integer.parseInt(cbAlmacenM1.getSelectedItem().toString()));
+			
+			lblKgDM1.setText(kg+"");
+			
+			cbLotesM1.repaint();
+			pAdd1.revalidate();
+			
+			
 		 		}
 		 	}
 		 });
-		JComboBox cbAlmacenM1 = new JComboBox();
-		cbAlmacenM1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
+		
+		
+		
+		
 	
-			}
-		});
-		
-		cbAlmacenM1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {	
-			
-			}});
-		
 		cbAlmacenM1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {			
-				ArrayList prueba=new ArrayList();
-				prueba=m.getListaLotes(Integer.parseInt(cbAlmacenM1.getSelectedItem().toString()));
+				ArrayList ListaLote=new ArrayList();
+				ListaLote=m.getListaLotes(Integer.parseInt(cbAlmacenM1.getSelectedItem().toString()));
 				cbLotesM1.removeAllItems();
-			for(int i=0; i<prueba.size();i++) {
+			for(int i=0; i<ListaLote.size();i++) {
 				
-				cbLotesM1.addItem(prueba.get(i));
+				cbLotesM1.addItem(ListaLote.get(i));
 			
 			
 		}
@@ -596,6 +600,7 @@ public class AgregarPreLimpia extends JFrame {
 	}
 				
 			});
+		
 		cbAlmacenM1.setBackground(Color.WHITE);
 		
 		lista=m.getListaAlmacen();
@@ -606,20 +611,419 @@ public class AgregarPreLimpia extends JFrame {
 			
 		}
 		
+		cbAlmacenM2.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList ListaLote=new ArrayList();
+				ListaLote=m.getListaLotes(Integer.parseInt(cbAlmacenM2.getSelectedItem().toString()));
+				cbLotesM2.removeAllItems();
+			for(int i=0; i<ListaLote.size();i++) {
+				
+				cbLotesM2.addItem(ListaLote.get(i));
+			
+			
+		}
+			cbLotesM2.repaint();
+			pAdd1.revalidate();
+			
+				
+			}
+		});
 		
-		JLabel lblKgDM1 = new JLabel("New label");
+		cbAlmacenM3.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList ListaLote=new ArrayList();
+				ListaLote=m.getListaLotes(Integer.parseInt(cbAlmacenM3.getSelectedItem().toString()));
+				cbLotesM3.removeAllItems();
+			for(int i=0; i<ListaLote.size();i++) {
+				
+				cbLotesM3.addItem(ListaLote.get(i));
+			
+			
+		}
+			cbLotesM3.repaint();
+			pAdd1.revalidate();
+				
+			}
+		});
+		
+		cbAlmacenM4.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList ListaLote=new ArrayList();
+				ListaLote=m.getListaLotes(Integer.parseInt(cbAlmacenM4.getSelectedItem().toString()));
+				cbLotesM4.removeAllItems();
+			for(int i=0; i<ListaLote.size();i++) {
+				
+				cbLotesM4.addItem(ListaLote.get(i));
+			
+			
+		}
+			cbLotesM4.repaint();
+			pAdd1.revalidate();
+				
+			}
+		});
+		
+		cbAlmacenM5.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList ListaLote=new ArrayList();
+				ListaLote=m.getListaLotes(Integer.parseInt(cbAlmacenM5.getSelectedItem().toString()));
+				cbLotesM5.removeAllItems();
+			for(int i=0; i<ListaLote.size();i++) {
+				
+				cbLotesM5.addItem(ListaLote.get(i));
+			
+			
+		}
+			cbLotesM5.repaint();
+			pAdd1.revalidate();
+				
+			}
+		});
+		
+		cbAlmacenM6.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList ListaLote=new ArrayList();
+				ListaLote=m.getListaLotes(Integer.parseInt(cbAlmacenM6.getSelectedItem().toString()));
+				cbLotesM6.removeAllItems();
+			for(int i=0; i<ListaLote.size();i++) {
+				
+				cbLotesM6.addItem(ListaLote.get(i));
+			
+			
+		}
+			cbLotesM6.repaint();
+			pAdd1.revalidate();
+				
+			}
+		});
+		
+		cbAlmacenM7.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList ListaLote=new ArrayList();
+				ListaLote=m.getListaLotes(Integer.parseInt(cbAlmacenM7.getSelectedItem().toString()));
+				cbLotesM7.removeAllItems();
+			for(int i=0; i<ListaLote.size();i++) {
+				
+				cbLotesM7.addItem(ListaLote.get(i));
+			
+			
+		}
+			cbLotesM7.repaint();
+			pAdd1.revalidate();
+				
+				
+			}
+		});
+		
+		 cbLotesM2.addItemListener(new ItemListener() {
+			 	public void itemStateChanged(ItemEvent e) {
+			 	
+			 		String envase;
+			 		double kg;
+			 		if(cbLotesM2.getItemCount()!=0) {
+			 	envase=m.getEnvase(Integer.parseInt(cbLotesM2.getSelectedItem().toString()));
+			 	lblEnvaseM2.setText(envase);
+			 	
+			 	
+			 	
+				
+				kg=m.getKgAlmacen(Integer.parseInt(cbLotesM2.getSelectedItem().toString()), Integer.parseInt(cbAlmacenM2.getSelectedItem().toString()));
+				
+				lblKgDM2.setText(kg+"");
+				
+				cbLotesM2.repaint();
+				pAdd2.revalidate();
+				
+				
+			 		}
+			 	}
+			 });
+			
+		 cbLotesM3.addItemListener(new ItemListener() {
+			 	public void itemStateChanged(ItemEvent e) {
+			 	
+			 		String envase;
+			 		double kg;
+			 		if(cbLotesM3.getItemCount()!=0) {
+			 	envase=m.getEnvase(Integer.parseInt(cbLotesM3.getSelectedItem().toString()));
+			 	lblEnvaseM3.setText(envase);
+			 	
+			 	
+			 	
+				
+				kg=m.getKgAlmacen(Integer.parseInt(cbLotesM3.getSelectedItem().toString()), Integer.parseInt(cbAlmacenM3.getSelectedItem().toString()));
+				
+				lblKgDM3.setText(kg+"");
+				
+				cbLotesM3.repaint();
+				pAdd3.revalidate();
+				
+				
+			 		}
+			 	}
+			 });
+			
+		 cbLotesM4.addItemListener(new ItemListener() {
+			 	public void itemStateChanged(ItemEvent e) {
+			 	
+			 		String envase;
+			 		double kg;
+			 		if(cbLotesM4.getItemCount()!=0) {
+			 	envase=m.getEnvase(Integer.parseInt(cbLotesM4.getSelectedItem().toString()));
+			 	lblEnvaseM4.setText(envase);
+			 	
+			 	
+			 	
+				
+				kg=m.getKgAlmacen(Integer.parseInt(cbLotesM4.getSelectedItem().toString()), Integer.parseInt(cbAlmacenM4.getSelectedItem().toString()));
+				
+				lblKgDM4.setText(kg+"");
+				
+				cbLotesM4.repaint();
+				pAdd4.revalidate();
+				
+				
+			 		}
+			 	}
+			 });
+			
+		 cbLotesM5.addItemListener(new ItemListener() {
+			 	public void itemStateChanged(ItemEvent e) {
+			 	
+			 		String envase;
+			 		double kg;
+			 		if(cbLotesM5.getItemCount()!=0) {
+			 	envase=m.getEnvase(Integer.parseInt(cbLotesM5.getSelectedItem().toString()));
+			 	lblEnvaseM5.setText(envase);
+			 	
+			 	
+			 	
+				
+				kg=m.getKgAlmacen(Integer.parseInt(cbLotesM5.getSelectedItem().toString()), Integer.parseInt(cbAlmacenM5.getSelectedItem().toString()));
+				
+				lblKgDM5.setText(kg+"");
+				
+				cbLotesM5.repaint();
+				pAdd5.revalidate();
+				
+				
+			 		}
+			 	}
+			 });
+			
+		 cbLotesM6.addItemListener(new ItemListener() {
+			 	public void itemStateChanged(ItemEvent e) {
+			 	
+			 		String envase;
+			 		double kg;
+			 		if(cbLotesM6.getItemCount()!=0) {
+			 	envase=m.getEnvase(Integer.parseInt(cbLotesM6.getSelectedItem().toString()));
+			 	lblEnvaseM6.setText(envase);
+			 	
+			 	
+			 	
+				
+				kg=m.getKgAlmacen(Integer.parseInt(cbLotesM6.getSelectedItem().toString()), Integer.parseInt(cbAlmacenM6.getSelectedItem().toString()));
+				
+				lblKgDM6.setText(kg+"");
+				
+				cbLotesM6.repaint();
+				pAdd6.revalidate();
+				
+				
+			 		}
+			 	}
+			 });
+			
+		 cbLotesM7.addItemListener(new ItemListener() {
+			 	public void itemStateChanged(ItemEvent e) {
+			 	
+			 		String envase;
+			 		double kg;
+			 		if(cbLotesM7.getItemCount()!=0) {
+			 	envase=m.getEnvase(Integer.parseInt(cbLotesM7.getSelectedItem().toString()));
+			 	lblEnvaseM7.setText(envase);
+			 	
+			 	
+			 	
+				
+				kg=m.getKgAlmacen(Integer.parseInt(cbLotesM7.getSelectedItem().toString()), Integer.parseInt(cbAlmacenM7.getSelectedItem().toString()));
+				
+				lblKgDM7.setText(kg+"");
+				
+				cbLotesM7.repaint();
+				pAdd7.revalidate();
+				
+				
+			 		}
+			 	}
+			 });
+		 panel_2.setVisible(false);
+		 pAdd1.setVisible(false);
+			pAdd2.setVisible(false);
+			pAdd3.setVisible(false);
+			pAdd4.setVisible(false);
+			pAdd5.setVisible(false);
+			pAdd6.setVisible(false);
+			pAdd7.setVisible(false);
+			
 		lblKgDM1.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		
 		lblEnvaseM1.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM1 = new JTextField();
+		tfKgM1.addFocusListener(new FocusAdapter() {
+			
+			public void focusLost(FocusEvent arg0) {
+				
+				if(Double.parseDouble(tfKgM1.getText())>Double.parseDouble(lblKgDM1.getText())) {
+					tfKgM1.setText("");
+					tfKgM1.requestFocus();
+				}
+				
+			}
+		});
 		tfKgM1.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfKgM1.setColumns(10);
 		
+		tfKgM2.addFocusListener(new FocusAdapter() {
+			
+			public void focusLost(FocusEvent arg0) {
+				
+				if(Double.parseDouble(tfKgM2.getText())>Double.parseDouble(lblKgDM2.getText())) {
+					tfKgM2.setText("");
+					tfKgM2.requestFocus();
+				}
+				
+			}
+		});
+		tfKgM3.addFocusListener(new FocusAdapter() {
+	
+		public void focusLost(FocusEvent arg0) {
+		
+		if(Double.parseDouble(tfKgM3.getText())>Double.parseDouble(lblKgDM3.getText())) {
+			tfKgM3.setText("");
+			tfKgM3.requestFocus();
+		}
+		
+		}
+		});
+		tfKgM4.addFocusListener(new FocusAdapter() {
+	
+			public void focusLost(FocusEvent arg0) {
+		
+		if(Double.parseDouble(tfKgM4.getText())>Double.parseDouble(lblKgDM4.getText())) {
+			tfKgM4.setText("");
+			tfKgM4.requestFocus();
+		}
+		
+		}
+		});
+		tfKgM5.addFocusListener(new FocusAdapter() {
+	
+			public void focusLost(FocusEvent arg0) {
+		
+		if(Double.parseDouble(tfKgM5.getText())>Double.parseDouble(lblKgDM5.getText())) {
+			tfKgM5.setText("");
+			tfKgM5.requestFocus();
+		}
+		
+			}
+		});
+		tfKgM6.addFocusListener(new FocusAdapter() {
+	
+			public void focusLost(FocusEvent arg0) {
+		
+		if(Double.parseDouble(tfKgM6.getText())>Double.parseDouble(lblKgDM6.getText())) {
+			tfKgM6.setText("");
+			tfKgM6.requestFocus();
+		}
+		
+			}
+		});
+		tfKgM7.addFocusListener(new FocusAdapter() {
+	
+			public void focusLost(FocusEvent arg0) {
+		
+		if(Double.parseDouble(tfKgM7.getText())>Double.parseDouble(lblKgDM6.getText())) {
+			tfKgM7.setText("");
+			tfKgM7.requestFocus();
+		}
+		
+			}
+		});
+
+
 		
 		cbLotesM1.setBackground(Color.WHITE);
 		GroupLayout gl_pAdd1 = new GroupLayout(pAdd1);
+		
+		btnMezclarLotes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(Integer.parseInt(tfNLotes.getText())==1){
+					 panel_2.setVisible(true);
+					 pAdd1.setVisible(true);
+				}else if(Integer.parseInt(tfNLotes.getText())==2){
+					 panel_2.setVisible(true);
+					 pAdd1.setVisible(true);
+					 pAdd2.setVisible(true);
+				}else if(Integer.parseInt(tfNLotes.getText())==3){
+					 panel_2.setVisible(true);
+					 pAdd1.setVisible(true);
+					 pAdd2.setVisible(true);
+					 pAdd3.setVisible(true);
+				}else if(Integer.parseInt(tfNLotes.getText())==4){
+					 panel_2.setVisible(true);
+					 pAdd1.setVisible(true);
+					 pAdd2.setVisible(true);
+					 pAdd3.setVisible(true);
+					 pAdd4.setVisible(true);
+				}else if(Integer.parseInt(tfNLotes.getText())==5){
+					 panel_2.setVisible(true);
+					 pAdd1.setVisible(true);
+					 pAdd2.setVisible(true);
+					 pAdd3.setVisible(true);
+					 pAdd4.setVisible(true);
+					 pAdd5.setVisible(true);
+				}else if(Integer.parseInt(tfNLotes.getText())==6){
+					 panel_2.setVisible(true);
+					 pAdd1.setVisible(true);
+					 pAdd2.setVisible(true);
+					 pAdd3.setVisible(true);
+					 pAdd4.setVisible(true);
+					 pAdd5.setVisible(true);
+					 pAdd6.setVisible(true);
+				}else if(Integer.parseInt(tfNLotes.getText())==7){
+					 panel_2.setVisible(true);
+					 pAdd1.setVisible(true);
+					 pAdd2.setVisible(true);
+					 pAdd3.setVisible(true);
+					 pAdd4.setVisible(true);
+					 pAdd5.setVisible(true);
+					 pAdd6.setVisible(true);
+					 pAdd7.setVisible(true);
+				}else {
+					tfNLotes.setText("");
+					tfNLotes.requestFocus();
+					
+					 panel_2.setVisible(false);
+					 pAdd1.setVisible(false);
+						pAdd2.setVisible(false);
+						pAdd3.setVisible(false);
+						pAdd4.setVisible(false);
+						pAdd5.setVisible(false);
+						pAdd6.setVisible(false);
+						pAdd7.setVisible(false);
+				}
+				
+				
+				
+			}
+		});
+		
+		
 		gl_pAdd1.setHorizontalGroup(
 			gl_pAdd1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pAdd1.createSequentialGroup()

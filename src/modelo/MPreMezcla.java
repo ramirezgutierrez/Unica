@@ -121,6 +121,47 @@ public class MPreMezcla {
 		return tipoEnvase;
 		
 	}
+	public double getKgAlmacen(int lote, int almacen) {
+		
+		double kg=0;
+		
+		
+		try {
+Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+		
+		String sql="SELECT KG  FROM PROVISION WHERE LOTE=? AND ID_ALMACEN=?";
+
+		PreparedStatement mist=miconexion.prepareStatement(sql);
+		
+		mist.setInt(1, lote);
+		mist.setInt(2, almacen);
+		
+		ResultSet rs=mist.executeQuery();
+		
+		while(rs.next()){
+			
+		kg=kg+rs.getDouble(1);	
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		return kg;
+	}
 	
 	
 	
