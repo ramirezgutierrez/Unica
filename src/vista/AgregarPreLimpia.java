@@ -8,8 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.OAlmacen;
+import controlador.OOrdenTraspaso;
+import controlador.OPreMezcla;
 import modelo.MAlmacen;
 import modelo.MPreMezcla;
+import modelo.MordenTraspaso;
 
 import java.awt.Color;
 import javax.swing.GroupLayout;
@@ -28,6 +31,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -42,6 +46,8 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import net.miginfocom.swing.MigLayout;
 import java.awt.event.ItemListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ItemEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -1131,8 +1137,164 @@ public class AgregarPreLimpia extends JFrame {
 		tfNuevoLote = new JTextField();
 		tfNuevoLote.setColumns(10);
 		
-		JButton btnNewButton = new JButton("GENERAR MEZCLA");
-		btnNewButton.setBackground(Color.ORANGE);
+		JButton btnGenerar = new JButton("GENERAR MEZCLA");
+		btnGenerar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+				if(tfKgM1.getText().isEmpty()==false) {
+				
+					OOrdenTraspaso preMezcla;
+					
+					preMezcla=new OOrdenTraspaso(0,
+							Integer.parseInt(tfEmpleado.getText()),
+							Double.parseDouble(tfKgM1.getText()),
+							Integer.parseInt(cbLotesM1.getSelectedItem().toString()),
+							ParseFecha(tfFecha.getText()),
+							Integer.parseInt(cbAlmacenM1.getSelectedItem().toString()), 
+							Integer.parseInt(tfAlmacenDestino.getText()));
+							
+					MordenTraspaso ord=new MordenTraspaso();
+					
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+					
+					
+				}
+				if(tfKgM2.getText().isEmpty()==false) {
+					
+					OOrdenTraspaso preMezcla;
+					
+					preMezcla=new OOrdenTraspaso(0,
+							Integer.parseInt(tfEmpleado.getText()),
+							Double.parseDouble(tfKgM2.getText()),
+							Integer.parseInt(cbLotesM2.getSelectedItem().toString()),
+							ParseFecha(tfFecha.getText()),
+							Integer.parseInt(cbAlmacenM2.getSelectedItem().toString()), 
+							Integer.parseInt(tfAlmacenDestino.getText()));
+							
+					MordenTraspaso ord=new MordenTraspaso();
+					
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+					
+					
+				}
+				if(tfKgM3.getText().isEmpty()==false) {
+					
+					OOrdenTraspaso preMezcla;
+					
+					preMezcla=new OOrdenTraspaso(0,
+							Integer.parseInt(tfEmpleado.getText()),
+							Double.parseDouble(tfKgM3.getText()),
+							Integer.parseInt(cbLotesM3.getSelectedItem().toString()),
+							ParseFecha(tfFecha.getText()),
+							Integer.parseInt(cbAlmacenM3.getSelectedItem().toString()), 
+							Integer.parseInt(tfAlmacenDestino.getText()));
+							
+					MordenTraspaso ord=new MordenTraspaso();
+					
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+					
+					
+				}
+				if(tfKgM4.getText().isEmpty()==false) {
+					
+					OOrdenTraspaso preMezcla;
+					
+					preMezcla=new OOrdenTraspaso(0,
+							Integer.parseInt(tfEmpleado.getText()),
+							Double.parseDouble(tfKgM4.getText()),
+							Integer.parseInt(cbLotesM4.getSelectedItem().toString()),
+							ParseFecha(tfFecha.getText()),
+							Integer.parseInt(cbAlmacenM4.getSelectedItem().toString()), 
+							Integer.parseInt(tfAlmacenDestino.getText()));
+							
+					MordenTraspaso ord=new MordenTraspaso();
+					
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+					
+					
+				}
+				if(tfKgM5.getText().isEmpty()==false) {
+					
+					OOrdenTraspaso preMezcla;
+					
+					preMezcla=new OOrdenTraspaso(0,
+							Integer.parseInt(tfEmpleado.getText()),
+							Double.parseDouble(tfKgM5.getText()),
+							Integer.parseInt(cbLotesM5.getSelectedItem().toString()),
+							ParseFecha(tfFecha.getText()),
+							Integer.parseInt(cbAlmacenM5.getSelectedItem().toString()), 
+							Integer.parseInt(tfAlmacenDestino.getText()));
+							
+					MordenTraspaso ord=new MordenTraspaso();
+					
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+					
+					
+				}
+				if(tfKgM6.getText().isEmpty()==false) {
+					
+					OOrdenTraspaso preMezcla;
+					
+					preMezcla=new OOrdenTraspaso(0,
+							Integer.parseInt(tfEmpleado.getText()),
+							Double.parseDouble(tfKgM6.getText()),
+							Integer.parseInt(cbLotesM6.getSelectedItem().toString()),
+							ParseFecha(tfFecha.getText()),
+							Integer.parseInt(cbAlmacenM6.getSelectedItem().toString()), 
+							Integer.parseInt(tfAlmacenDestino.getText()));
+							
+					MordenTraspaso ord=new MordenTraspaso();
+					
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+					
+					
+				}
+				if(tfKgM7.getText().isEmpty()==false) {
+					
+					OOrdenTraspaso preMezcla;
+					
+					preMezcla=new OOrdenTraspaso(0,
+							Integer.parseInt(tfEmpleado.getText()),
+							Double.parseDouble(tfKgM7.getText()),
+							Integer.parseInt(cbLotesM7.getSelectedItem().toString()),
+							ParseFecha(tfFecha.getText()),
+							Integer.parseInt(cbAlmacenM7.getSelectedItem().toString()), 
+							Integer.parseInt(tfAlmacenDestino.getText()));
+							
+					MordenTraspaso ord=new MordenTraspaso();
+					
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+					
+					
+				}
+				if(tfKgM1.getText().isEmpty())tfKgM1.setText("0");
+				if(tfKgM2.getText().isEmpty())tfKgM2.setText("0");
+				if(tfKgM3.getText().isEmpty())tfKgM3.setText("0");
+				if(tfKgM4.getText().isEmpty())tfKgM4.setText("0");
+				if(tfKgM5.getText().isEmpty())tfKgM5.setText("0");
+				if(tfKgM6.getText().isEmpty())tfKgM6.setText("0");
+				if(tfKgM7.getText().isEmpty())tfKgM7.setText("0");
+
+				OPreMezcla orden;
+				orden=new OPreMezcla(Integer.parseInt(tfCodMez.getText()),Integer.parseInt(tfEmpleado.getText()),
+				(Double.parseDouble(tfKgM1.getText())+Double.parseDouble(tfKgM2.getText())+Double.parseDouble(tfKgM3.getText())+
+						Double.parseDouble(tfKgM4.getText())+
+						Double.parseDouble(tfKgM5.getText())+Double.parseDouble(tfKgM6.getText())+Double.parseDouble(tfKgM7.getText())),
+								ParseFecha(tfFecha.getText()),
+						Integer.parseInt(tfAlmacenDestino.getText()),Integer.parseInt(tfNuevoLote.getText()));
+				System.out.println("----"+orden.toString());
+				
+				MPreMezcla guarda=new MPreMezcla();
+				guarda.setOrden(orden);
+			}
+			
+			
+			
+			
+		});
+		btnGenerar.setBackground(Color.ORANGE);
 		
 		JLabel lblAlmacenDeDestino = new JLabel("ALMACEN DE DESTINO");
 		lblAlmacenDeDestino.setOpaque(true);
@@ -1156,7 +1318,7 @@ public class AgregarPreLimpia extends JFrame {
 					.addGap(18)
 					.addComponent(tfAlmacenDestino, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnGenerar, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
 					.addGap(22))
 		);
 		gl_panel_4.setVerticalGroup(
@@ -1166,7 +1328,7 @@ public class AgregarPreLimpia extends JFrame {
 						.addGroup(gl_panel_4.createParallelGroup(Alignment.BASELINE)
 							.addComponent(lblNuevoLoteGenerado, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 							.addComponent(tfNuevoLote, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnNewButton))
+							.addComponent(btnGenerar))
 						.addComponent(lblAlmacenDeDestino, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(tfAlmacenDestino, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1174,4 +1336,17 @@ public class AgregarPreLimpia extends JFrame {
 		panel_4.setLayout(gl_panel_4);
 		
 	}
+	
+	
+public static Date ParseFecha(String fecha) {
+		
+		SimpleDateFormat formato=new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaDate= null;
+		try {
+			fechaDate=formato.parse(fecha);
+		}catch(ParseException ex) {
+			System.out.println(ex);
+		}
+		return fechaDate;	
+}
 }

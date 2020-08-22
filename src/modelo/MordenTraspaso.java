@@ -18,6 +18,8 @@ import controlador.OOrdenTraspaso;
 public class MordenTraspaso {
 
 	
+
+
 	public List<OOrdenTraspaso> getOrdenTraspaso() throws Exception{
 		
 		List<OOrdenTraspaso> traspasos=new ArrayList<>();
@@ -172,4 +174,89 @@ public class MordenTraspaso {
 				}
 					
 				}
+
+			public void setPreMezclaProvision(OOrdenTraspaso preMezcla,int nuevoLote) {
+				
+				
+				double provision=0;
+				Connection miconexion;
+				try {
+					miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+					
+					String sql2="SELECT PROVISION FROM PROVISION WHERE LOTE=?";
+					PreparedStatement mist=miconexion.prepareStatement(sql2);
+					mist.setInt(1, preMezcla.getLote());
+					ResultSet rs=mist.executeQuery();
+					while(rs.next()){
+						provision=rs.getDouble(1);
+						
+					}
+					
+					String sql="INSERT INTO PROVISION(ID_ALMACEN,LOTE,KG,ACCION,PROVISION,ID_TRANSACCION)"+
+							"VALUES(?,?,?,?,?,?)";
+					PreparedStatement mist2=miconexion.prepareStatement(sql);
+					
+					mist2.setInt(1, preMezcla.getAlmOrigen());
+					
+					mist2.setInt(2, preMezcla.getLote());
+					mist2.setDouble(3, -preMezcla.getKg());
+					mist2.setString(4,  "SUSTRAIDO PARA PREMEZCLA DEL NUEVO LOTE "+nuevoLote);
+					mist2.setDouble(5, provision-preMezcla.getKg());
+					mist2.setInt(6, 0);
+				
+				
+				
+					mist2.execute();
+				
+					
+					
+					/*
+					 * AÑADIR CONJUNTO DE LOTE
+					 */
+					
+					
+					
+					
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("error en consulta");
+				e.printStackTrace();
+			}
+
+			}
+			public int getCodigoSiguiente() {
+				int codigo=0;
+				
+				Connection miconexion;
+				try {
+					miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+					String sql="SELECT ID_TRANSACCION FROM PROVISION";
+					
+					Statement mist=miconexion.createStatement();
+					
+					ResultSet rs=mist.executeQuery(sql);
+					
+					while(rs.next()) {
+						
+						codigo=rs.getInt(1)+1;
+						
+					}
+					
+					
+					
+					
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("error en consulta");
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				// TODO Auto-generated method stub
+				return codigo;
+			}
+			
 }

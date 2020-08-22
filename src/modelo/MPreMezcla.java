@@ -8,7 +8,51 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import controlador.OPreMezcla;
+
 public class MPreMezcla {
+	
+	public void setOrden(OPreMezcla orden) {
+		Connection miconexion;
+		try {
+			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+			
+			String sql="INSERT INTO ORDEN_PREMEZCLA(COD_ORDEN,EMPLEADO,KG,FECHA,ALMACEN_DESTINO,LOTE_MEZCLA)"+
+			"VALUES(?,?,?,?,?,?)";
+			PreparedStatement mist=miconexion.prepareStatement(sql);
+			
+			mist.setInt(1,orden.getCodOrd());
+			mist.setInt(2,orden.getEmpleado());
+			mist.setDouble(3,orden.getKg());
+			
+			
+			java.util.Date fechautil= new java.util.Date();
+			fechautil=orden.getFecha();
+			java.sql.Date fechasql=new java.sql.Date(fechautil.getTime()); 
+			
+			mist.setDate(4,fechasql);
+			
+			mist.setInt(5,orden.getAlmacenDestino());
+			
+			mist.setInt(6, orden.getLotePreM());
+			
+			mist.execute();
+			
+			System.out.println("orden premezcla insertado");
+		
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		System.out.println("error en consulta");
+		e.printStackTrace();
+	}
+	
+	}
+	
+	
+	
+	
+	
 	
 	public ArrayList getListaAlmacen() {
 		

@@ -11,10 +11,16 @@ public class OOrdenTraspaso {
 	private Date fecha;
 	private int almOrigen;
 	private int almDestino;
+	private int codNuevoLote;
 	
 	
 	
-	
+	public int getCodNuevoLote() {
+		return codNuevoLote;
+	}
+	public void setCodNuevoLote(int codNuevoLote) {
+		this.codNuevoLote = codNuevoLote;
+	}
 	public OOrdenTraspaso(int codord, int empleado, double kg, int lote, Date fecha, int almOrigen, int almDestino) {
 		super();
 		this.codord = codord;
@@ -25,6 +31,10 @@ public class OOrdenTraspaso {
 		this.almOrigen = almOrigen;
 		this.almDestino = almDestino;
 	}
+	public OOrdenTraspaso(int codord, int empleado, double kg, int lote, Date fecha, int almOrigen, int almDestino, int codNuevoLote) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCodord() {
 		return codord;
 	}
@@ -71,8 +81,9 @@ public class OOrdenTraspaso {
 
 	@Override
 	public String toString() {
-		return "OOrdenTraspaso [codord=" + codord + ", empleado=" + empleado + ", kg=" + kg + ", fecha=" + fecha
-				+ ", almOrigen=" + almOrigen + ", almDestino=" + almDestino + "]";
+		return "OOrdenTraspaso [codord=" + codord + ", empleado=" + empleado + ", kg=" + kg + ", lote=" + lote
+				+ ", fecha=" + fecha + ", almOrigen=" + almOrigen + ", almDestino=" + almDestino + ", codNuevoLote="
+				+ codNuevoLote + "]";
 	}
 	
 	
