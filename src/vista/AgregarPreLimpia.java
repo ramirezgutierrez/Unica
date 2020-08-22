@@ -195,10 +195,10 @@ public class AgregarPreLimpia extends JFrame {
 			cbAlmacenM2.addItem(lista.get(i).toString());
 		}
 		
-		JLabel lblKgDM2 = new JLabel("New label");
+		JLabel lblKgDM2 = new JLabel("");
 		lblKgDM2.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblEnvaseM2 = new JLabel("New label");
+		JLabel lblEnvaseM2 = new JLabel("");
 		lblEnvaseM2.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM2 = new JTextField();
@@ -245,10 +245,10 @@ public class AgregarPreLimpia extends JFrame {
 			cbAlmacenM3.addItem(lista.get(i).toString());
 		}
 		
-		JLabel lblKgDM3 = new JLabel("New label");
+		JLabel lblKgDM3 = new JLabel("");
 		lblKgDM3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblEnvaseM3 = new JLabel("New label");
+		JLabel lblEnvaseM3 = new JLabel("");
 		lblEnvaseM3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM3 = new JTextField();
@@ -295,10 +295,10 @@ public class AgregarPreLimpia extends JFrame {
 			cbAlmacenM4.addItem(lista.get(i).toString());
 		}
 		
-		JLabel lblKgDM4 = new JLabel("New label");
+		JLabel lblKgDM4 = new JLabel("");
 		lblKgDM4.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblEnvaseM4 = new JLabel("New label");
+		JLabel lblEnvaseM4 = new JLabel("");
 		lblEnvaseM4.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM4 = new JTextField();
@@ -345,10 +345,10 @@ public class AgregarPreLimpia extends JFrame {
 			cbAlmacenM5.addItem(lista.get(i).toString());
 		}
 		
-		JLabel lblKgDM5 = new JLabel("New label");
+		JLabel lblKgDM5 = new JLabel("");
 		lblKgDM5.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblEnvaseM5 = new JLabel("New label");
+		JLabel lblEnvaseM5 = new JLabel("");
 		lblEnvaseM5.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM5 = new JTextField();
@@ -394,10 +394,10 @@ public class AgregarPreLimpia extends JFrame {
 			cbAlmacenM6.addItem(lista.get(i).toString());
 		}
 		
-		JLabel lblKgDM6 = new JLabel("New label");
+		JLabel lblKgDM6 = new JLabel("");
 		lblKgDM6.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblEnvaseM6 = new JLabel("New label");
+		JLabel lblEnvaseM6 = new JLabel("");
 		lblEnvaseM6.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM6 = new JTextField();
@@ -444,10 +444,10 @@ public class AgregarPreLimpia extends JFrame {
 			cbAlmacenM7.addItem(lista.get(i).toString());
 		}
 		
-		JLabel lblKgDM7 = new JLabel("New label");
+		JLabel lblKgDM7 = new JLabel("");
 		lblKgDM7.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblEnvaseM7 = new JLabel("New label");
+		JLabel lblEnvaseM7 = new JLabel("");
 		lblEnvaseM7.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM7 = new JTextField();
@@ -551,8 +551,8 @@ public class AgregarPreLimpia extends JFrame {
 					.addComponent(pAdd7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
-		JLabel lblEnvaseM1 = new JLabel("New label");
-		JLabel lblKgDM1 = new JLabel("New label");
+		JLabel lblEnvaseM1 = new JLabel("");
+		JLabel lblKgDM1 = new JLabel("");
 		 cbLotesM1 = new JComboBox();
 		 JComboBox cbAlmacenM1 = new JComboBox();
 		 cbLotesM1.addItemListener(new ItemListener() {
@@ -873,16 +873,20 @@ public class AgregarPreLimpia extends JFrame {
 		lblEnvaseM1.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tfKgM1 = new JTextField();
+		tfKgM1.setText("");
 		tfKgM1.addFocusListener(new FocusAdapter() {
 			
 			public void focusLost(FocusEvent arg0) {
 				
-				if(Double.parseDouble(tfKgM1.getText())>Double.parseDouble(lblKgDM1.getText())) {
+				if(lblKgDM1.getText()!="" && tfKgM1.getText().isEmpty()==false ) {
+					
+				
+				 if(Double.parseDouble(tfKgM1.getText())>Double.parseDouble(lblKgDM1.getText())) {
 					tfKgM1.setText("");
 					tfKgM1.requestFocus();
 				}
 				
-			}
+			}}
 		});
 		tfKgM1.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfKgM1.setColumns(10);
@@ -890,67 +894,69 @@ public class AgregarPreLimpia extends JFrame {
 		tfKgM2.addFocusListener(new FocusAdapter() {
 			
 			public void focusLost(FocusEvent arg0) {
-				
-				if(Double.parseDouble(tfKgM2.getText())>Double.parseDouble(lblKgDM2.getText())) {
+				if(lblKgDM2.getText()!="" && tfKgM2.getText().isEmpty()==false ) {
+					
+				 if(Double.parseDouble(tfKgM2.getText())>Double.parseDouble(lblKgDM2.getText())) {
 					tfKgM2.setText("");
 					tfKgM2.requestFocus();
 				}
 				
-			}
+			}}
 		});
 		tfKgM3.addFocusListener(new FocusAdapter() {
 	
 		public void focusLost(FocusEvent arg0) {
-		
+			if(lblKgDM3.getText()!="" && tfKgM3.getText().isEmpty()==false ) {
 		if(Double.parseDouble(tfKgM3.getText())>Double.parseDouble(lblKgDM3.getText())) {
 			tfKgM3.setText("");
 			tfKgM3.requestFocus();
 		}
 		
-		}
+		}}
 		});
 		tfKgM4.addFocusListener(new FocusAdapter() {
 	
 			public void focusLost(FocusEvent arg0) {
-		
+				if(lblKgDM4.getText()!="" && tfKgM4.getText().isEmpty()==false ) {
 		if(Double.parseDouble(tfKgM4.getText())>Double.parseDouble(lblKgDM4.getText())) {
 			tfKgM4.setText("");
 			tfKgM4.requestFocus();
 		}
 		
-		}
+		}}
 		});
 		tfKgM5.addFocusListener(new FocusAdapter() {
 	
 			public void focusLost(FocusEvent arg0) {
-		
+				if(lblKgDM5.getText()!="" && tfKgM5.getText().isEmpty()==false ) {
 		if(Double.parseDouble(tfKgM5.getText())>Double.parseDouble(lblKgDM5.getText())) {
 			tfKgM5.setText("");
 			tfKgM5.requestFocus();
 		}
 		
-			}
+			
+				}}
 		});
 		tfKgM6.addFocusListener(new FocusAdapter() {
 	
 			public void focusLost(FocusEvent arg0) {
-		
+				if(lblKgDM6.getText()!="" && tfKgM6.getText().isEmpty()==false ) {
 		if(Double.parseDouble(tfKgM6.getText())>Double.parseDouble(lblKgDM6.getText())) {
 			tfKgM6.setText("");
 			tfKgM6.requestFocus();
 		}
-		
+				}
 			}
 		});
 		tfKgM7.addFocusListener(new FocusAdapter() {
 	
 			public void focusLost(FocusEvent arg0) {
-		
+				if(lblKgDM7.getText()!="" && tfKgM7.getText().isEmpty()==false ) {
 		if(Double.parseDouble(tfKgM7.getText())>Double.parseDouble(lblKgDM6.getText())) {
 			tfKgM7.setText("");
 			tfKgM7.requestFocus();
 		}
-		
+				}
 			}
 		});
 
