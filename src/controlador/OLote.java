@@ -5,9 +5,25 @@ public class OLote implements Comparable<OLote>{
 	
 	private int almacen;
 	private double kg;
+	private int loteH;
+	private double tpc;
+	
+	public int getLoteH() {
+		return loteH;
+	}
+	public void setLoteH(int loteH) {
+		this.loteH = loteH;
+	}
+	public double getTpc() {
+		return tpc;
+	}
+	public void setTpc(double tpc) {
+		this.tpc = tpc;
+	}
 	
 	
-	public OLote(int almacen, double kg) {
+	
+	public OLote(int almacen, double kg,int loteH,double tpc) {
 		super();
 		this.almacen = almacen;
 		this.kg = kg;

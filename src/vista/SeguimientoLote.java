@@ -27,6 +27,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -114,11 +115,11 @@ public class SeguimientoLote extends JFrame {
 		JButton btnUbicarDeLote = new JButton("UBICAR DE LOTE");
 		btnUbicarDeLote.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				double x=0;
 				int lote=Integer.parseInt(tflote.getText());
 				MFiltraLote m=new MFiltraLote();
 				try {
-				double x=m.getkgcomprados(lote);
+				x=m.getkgcomprados(lote);
 				String cadena=String.valueOf(x);
 			
 					
@@ -142,12 +143,17 @@ public class SeguimientoLote extends JFrame {
 					e.printStackTrace();
 				}
 				}
-			
+				double tpc1;
+				DecimalFormat formato1 = new DecimalFormat("#.00");
+				
 				for(OLote tempLote : KgList) {
 					
 					if(tempLote.getAlmacen()!=0) {
 					
-					model.addRow(new Object[] {tempLote.getAlmacen(), tempLote.getKg()});
+					tpc1=(tempLote.getKg()/x)*100;
+					;
+						
+					model.addRow(new Object[] {tempLote.getAlmacen(), tempLote.getKg(),Integer.parseInt(tflote.getText()),formato1.format(tpc1)+"%"});
 					}
 					
 				}
@@ -222,6 +228,8 @@ public class SeguimientoLote extends JFrame {
 		
 		model.addColumn( "ALMACÉN");
 		model.addColumn( "KG");
+		model.addColumn("LOTE");
+		model.addColumn("% DEL LOTE");
 		
 		
 		

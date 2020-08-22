@@ -124,7 +124,7 @@ public class MFiltraLote {
 				}
 				
 				
-			}OLote tempkg=new OLote(alm,contadorkg);
+			}OLote tempkg=new OLote(alm,contadorkg,lote,100);
 			kgpa.add(tempkg);
 			
 			contadorkg=0;
@@ -137,4 +137,47 @@ public class MFiltraLote {
 		return kgpa;
 		
 	}
+	
+	/**
+	 * metodo para sacar los valores pertenecientes a otros lotes
+	 * 
+	 */
+	
+	/*public List<OLote> getLotesMezclados(int lote){
+			List<OLote> tempLote=new ArrayList<OLote>();
+			try {
+			Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+			
+			String sql="SELECT KG FROM PROVISION WHERE LOTE=? AND IS NOT NULL(LOTE_MEZCLA)";
+
+			PreparedStatement mist=miconexion.prepareStatement(sql);
+			
+			mist.setInt(1, lote);
+			
+			ResultSet rs=mist.executeQuery();
+			
+			while(rs.next()) {
+				
+				
+				tempLote.add(newOLote())
+				
+			}
+			
+			
+			
+			
+			
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		
+		
+		
+		return tempLote;
+		
+	}*/
 }

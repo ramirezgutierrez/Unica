@@ -1157,7 +1157,7 @@ public class AgregarPreLimpia extends JFrame {
 							
 					MordenTraspaso ord=new MordenTraspaso();
 					
-				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()),Integer.parseInt(tfAlmacenDestino.getText()));
 					
 					
 				}
@@ -1175,7 +1175,7 @@ public class AgregarPreLimpia extends JFrame {
 							
 					MordenTraspaso ord=new MordenTraspaso();
 					
-				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()),Integer.parseInt(tfAlmacenDestino.getText()));
 					
 					
 				}
@@ -1193,7 +1193,7 @@ public class AgregarPreLimpia extends JFrame {
 							
 					MordenTraspaso ord=new MordenTraspaso();
 					
-				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()),Integer.parseInt(tfAlmacenDestino.getText()));
 					
 					
 				}
@@ -1211,7 +1211,7 @@ public class AgregarPreLimpia extends JFrame {
 							
 					MordenTraspaso ord=new MordenTraspaso();
 					
-				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()),Integer.parseInt(tfAlmacenDestino.getText()));
 					
 					
 				}
@@ -1229,7 +1229,7 @@ public class AgregarPreLimpia extends JFrame {
 							
 					MordenTraspaso ord=new MordenTraspaso();
 					
-				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()),Integer.parseInt(tfAlmacenDestino.getText()));
 					
 					
 				}
@@ -1247,7 +1247,7 @@ public class AgregarPreLimpia extends JFrame {
 							
 					MordenTraspaso ord=new MordenTraspaso();
 					
-				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()),Integer.parseInt(tfAlmacenDestino.getText()));
 					
 					
 				}
@@ -1265,7 +1265,7 @@ public class AgregarPreLimpia extends JFrame {
 							
 					MordenTraspaso ord=new MordenTraspaso();
 					
-				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()));
+				ord.setPreMezclaProvision(preMezcla,Integer.parseInt(tfNuevoLote.getText()),Integer.parseInt(tfAlmacenDestino.getText()));
 					
 					
 				}

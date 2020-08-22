@@ -175,10 +175,11 @@ public class MordenTraspaso {
 					
 				}
 
-			public void setPreMezclaProvision(OOrdenTraspaso preMezcla,int nuevoLote) {
+			public void setPreMezclaProvision(OOrdenTraspaso preMezcla,int nuevoLote,int almDestino) {
 				
 				
 				double provision=0;
+				double provision2=0;
 				Connection miconexion;
 				try {
 					miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
@@ -192,17 +193,18 @@ public class MordenTraspaso {
 						
 					}
 					
-					String sql="INSERT INTO PROVISION(ID_ALMACEN,LOTE,KG,ACCION,PROVISION,ID_TRANSACCION)"+
-							"VALUES(?,?,?,?,?,?)";
+					String sql="INSERT INTO PROVISION(ID_ALMACEN,LOTE,KG,ACCION,PROVISION,ID_TRANSACCION,LOTE_MEZCLA)"+
+							"VALUES(?,?,?,?,?,?,?)";
 					PreparedStatement mist2=miconexion.prepareStatement(sql);
 					
 					mist2.setInt(1, preMezcla.getAlmOrigen());
 					
 					mist2.setInt(2, preMezcla.getLote());
 					mist2.setDouble(3, -preMezcla.getKg());
-					mist2.setString(4,  "SUSTRAIDO PARA PREMEZCLA DEL NUEVO LOTE "+nuevoLote);
+					mist2.setString(4,  "SUSTRAIDO PARA PREMEZCLA ");
 					mist2.setDouble(5, provision-preMezcla.getKg());
 					mist2.setInt(6, 0);
+					mist2.setInt(7, nuevoLote);
 				
 				
 				
@@ -213,9 +215,32 @@ public class MordenTraspaso {
 					/*
 					 * AÑADIR CONJUNTO DE LOTE
 					 */
+					String sql3="SELECT PROVISION FROM PROVISION WHERE LOTE_MEZCLA=?";
+					PreparedStatement mist3=miconexion.prepareStatement(sql3);
+					mist3.setInt(1,nuevoLote);
+					ResultSet rs3=mist3.executeQuery();
 					
+					while(rs3.next()) {
+						
+						provision2=rs3.getDouble(1);
+						System.out.println(provision2+"--------");
+					}
 					
+					String sql4="INSERT INTO PROVISION(ID_ALMACEN,LOTE,KG,ACCION,PROVISION,ID_TRANSACCION,LOTE_MEZCLA)"+
+							"VALUES(?,?,?,?,?,?,?)";
 					
+					PreparedStatement mist4=miconexion.prepareStatement(sql4);
+					
+					mist2.setInt(1, almDestino);
+					
+					mist2.setInt(2, preMezcla.getLote());
+					mist2.setDouble(3, preMezcla.getKg());
+					mist2.setString(4,  "AÑADIDO PARA PREMEZCLA ");
+					mist2.setDouble(5, provision2+preMezcla.getKg());
+					System.out.println(preMezcla.getKg());
+					mist2.setInt(6, 0);
+					mist2.setInt(7, nuevoLote);
+					mist2.execute();
 					
 			}catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -258,5 +283,8 @@ public class MordenTraspaso {
 				// TODO Auto-generated method stub
 				return codigo;
 			}
+			
+			
+			
 			
 }
