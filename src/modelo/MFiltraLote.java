@@ -57,7 +57,7 @@ public class MFiltraLote {
 		int i=0;
 		Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
 		
-		String sql="SELECT ID_ALMACEN FROM PROVISION WHERE LOTE=?";
+		String sql="SELECT DISTINCT ID_ALMACEN FROM PROVISION WHERE LOTE=?";
 
 		PreparedStatement mist=miconexion.prepareStatement(sql);
 		
@@ -82,7 +82,7 @@ public class MFiltraLote {
 		
 		}
 		
-		Arrays.sort(almacenes);
+		
 		
 		/*
 		 * rescatar sumatorio por kg en almacen

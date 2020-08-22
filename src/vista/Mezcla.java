@@ -37,6 +37,24 @@ public class Mezcla extends JPanel {
 			}
 		});
 		btnMezclaPrelimpia.setBackground(Color.ORANGE);
+		
+		JButton btnOrdenDeLimpia = new JButton("Orden de limpia");
+		btnOrdenDeLimpia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				AgregarOrdenLimpia nuevoform= new AgregarOrdenLimpia();
+				nuevoform.setVisible(true);
+				nuevoform.setDefaultCloseOperation(nuevoform.DISPOSE_ON_CLOSE);
+				
+				
+				
+				
+			}
+		});
+		btnOrdenDeLimpia.setBackground(Color.ORANGE);
+		
+		JButton btnCrearDeposito = new JButton("Crear Deposito Acondicionado");
+		btnCrearDeposito.setBackground(Color.ORANGE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -44,14 +62,20 @@ public class Mezcla extends JPanel {
 					.addComponent(lblmezcla, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnMezclaPrelimpia, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(154, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(btnOrdenDeLimpia, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnCrearDeposito, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(158, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblmezcla, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnMezclaPrelimpia))
+						.addComponent(btnMezclaPrelimpia)
+						.addComponent(btnOrdenDeLimpia)
+						.addComponent(btnCrearDeposito))
 					.addContainerGap(270, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);

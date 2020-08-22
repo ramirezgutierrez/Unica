@@ -38,7 +38,7 @@ public class MPreMezcla {
 			
 			mist.execute();
 			
-			System.out.println("orden premezcla insertado");
+		
 		
 		
 	} catch (SQLException e) {
