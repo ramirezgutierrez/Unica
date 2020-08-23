@@ -230,7 +230,7 @@ public class SeguimientoLote extends JFrame {
 		model.addColumn( "KG");
 		model.addColumn("LOTE");
 		model.addColumn("% DEL LOTE");
-		
+		model.addColumn("LOTE DESTINO");
 		
 		
 

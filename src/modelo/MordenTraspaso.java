@@ -184,9 +184,9 @@ public class MordenTraspaso {
 				try {
 					miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
 					
-					String sql2="SELECT PROVISION FROM PROVISION WHERE LOTE=?";
+					String sql2="SELECT PROVISION FROM PROVISION WHERE ID_ALMACEN=?";
 					PreparedStatement mist=miconexion.prepareStatement(sql2);
-					mist.setInt(1, preMezcla.getLote());
+					mist.setInt(1, preMezcla.getAlmOrigen());
 					ResultSet rs=mist.executeQuery();
 					while(rs.next()){
 						provision=rs.getDouble(1);
@@ -200,7 +200,7 @@ public class MordenTraspaso {
 					mist2.setInt(1, preMezcla.getAlmOrigen());
 					
 					mist2.setInt(2, preMezcla.getLote());
-					mist2.setDouble(3, -preMezcla.getKg());
+					mist2.setDouble(3,-preMezcla.getKg());
 					mist2.setString(4,  "SUSTRAIDO PARA PREMEZCLA ");
 					mist2.setDouble(5, provision-preMezcla.getKg());
 					mist2.setInt(6, 0);
@@ -215,9 +215,10 @@ public class MordenTraspaso {
 					/*
 					 * AÑADIR CONJUNTO DE LOTE
 					 */
-					String sql3="SELECT PROVISION FROM PROVISION WHERE LOTE_MEZCLA=?";
+					String sql3="SELECT PROVISION FROM PROVISION WHERE ID_ALMACEN=?";
 					PreparedStatement mist3=miconexion.prepareStatement(sql3);
-					mist3.setInt(1,nuevoLote);
+					mist3.setInt(1,preMezcla.getAlmDestino() );
+					
 					ResultSet rs3=mist3.executeQuery();
 					
 					while(rs3.next()) {
