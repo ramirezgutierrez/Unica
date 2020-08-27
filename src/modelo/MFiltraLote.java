@@ -239,23 +239,27 @@ public class MFiltraLote {
 		
 		
 		int contador=0;
+		boolean insertado=false;
 		
 		//System.out.println("num de lotes mezclados"+lotesMezclados.size()+"\n"+lotesMezclados.get(0)+"\n"+lotesMezclados.get(1)+"\n"+lotesMezclados.get(2));
 			
 		if(lotesMezclados.size()!=1) {
 		for(int i=0;i<lotesMezclados.size();i++) {
 		
+				insertado=false;
+				System.out.println("vuelta a primero i="+(i)+ " cantidad de lotes: "+lotesMezclados.size()+"\n"+"analizando--  alamcen: "
+				+lotesMezclados.get(i).getAlmacen()+" kg: "+lotesMezclados.get(i).getKg()+" lote dest: "
+						+lotesMezclados.get(i).getloteDest());
 			
-				System.out.println("vuelta a primero "+(i)+ " cantidad de lotes: "+lotesMezclados.size());
 			
-			
-			for (int j=1;j<lotesMezclados.size();j++) {//empieza en j=1 para empezar con el segundo elemento de la lista
+			for (int j=0;j<lotesMezclados.size();j++) {//empieza en j=1 para empezar con el segundo elemento de la lista
 				
 				contador++;
 				
 				System.out.println("vueltas que da dentro del segundo "+contador);
-				if(i==j)break;
-				if(lotesMezclados.get(i).getAlmacen()==lotesMezclados.get(j).getAlmacen() && lotesMezclados.get(i).getloteDest()==lotesMezclados.get(j).getloteDest()
+				if(i==j) {
+					//break;
+			}else if(lotesMezclados.get(i).getAlmacen()==lotesMezclados.get(j).getAlmacen() && lotesMezclados.get(i).getloteDest()==lotesMezclados.get(j).getloteDest()
 						&& lotesMezclados.get(i).getLoteH()==lotesMezclados.get(j).getLoteH()) {
 					
 					
@@ -273,20 +277,24 @@ public class MFiltraLote {
 					System.out.println("j= "+j);
 					System.out.println("num lotes fitrados "+lotesFiltrados.size());
 					i=i+1;
-					break;
+					insertado=true;
+					//break;
+					 
+					
 					
 				}else {
 					
 				
 			}
-				lotesFiltrados.add(lotesMezclados.get(i));
-				System.out.println("num lotes fitrados"+lotesFiltrados.size());
+		}if(insertado==false)lotesFiltrados.add(lotesMezclados.get(i));
+		System.out.println("num lotes fitrados"+lotesFiltrados.size());	
+			
+				
 			}
-		}	
 		}else {
 			
-			lotesFiltrados=(ArrayList<OLote>) lotesMezclados;
-			System.out.println(lotesMezclados.size()+"\n"+lotesFiltrados.size());
+			/*lotesFiltrados=(ArrayList<OLote>) lotesMezclados;
+			System.out.println(lotesMezclados.size()+"\n"+lotesFiltrados.size());*/
 			//System.out.println("lote: "+lotesFiltrados.get(1).getAlmacen()+"  "+lotesFiltrados.get(1).getKg()+"  "+lotesFiltrados.get(1).getLoteH()+"  "+lotesFiltrados.get(1).getloteDest());
 		}
 		
