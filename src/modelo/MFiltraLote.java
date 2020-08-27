@@ -178,7 +178,47 @@ public class MFiltraLote {
 		
 		
 		
+		ArrayList<OLote> lotesFiltrados=new ArrayList<OLote>();
 		
-		return lotesMezclados;
+		//for (OLote temp1 : lotesMezclados) {
+			for(int i=0;i<lotesMezclados.size();i++) {
+		
+			
+				System.out.println("vuelta a primer "+i);
+			
+			
+			for (int j=1;j<lotesMezclados.size();j++) {//empieza en j=1 para empezar con el segundo elemento de la lista
+				
+				
+				
+				if(lotesMezclados.get(i).getAlmacen()==lotesMezclados.get(j).getAlmacen() && lotesMezclados.get(i).getloteDest()==lotesMezclados.get(j).getloteDest()
+						&& lotesMezclados.get(i).getLoteH()==lotesMezclados.get(j).getLoteH()) {
+					
+					
+					
+					double kgx=lotesMezclados.get(i).getKg()+lotesMezclados.get(j).getKg();
+					
+					OLote tempn=new OLote(lotesMezclados.get(i).getAlmacen(),kgx,lotesMezclados.get(i).getLoteH(),lotesMezclados.get(i).getloteDest());
+					
+					
+					
+					lotesFiltrados.add(tempn);
+					
+					i=i+1;//adelanta el primer buble for ya que el suiente elemento ya a sido sumado.
+					System.out.println("vuelta a segundo"+j);
+					
+				}else {
+				lotesFiltrados.add(lotesMezclados.get(i));
+			}
+			}
+		}	
+		
+			
+			
+			
+		
+		
+		
+		return lotesFiltrados;
 }
 }
