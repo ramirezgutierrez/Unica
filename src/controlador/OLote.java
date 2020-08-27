@@ -6,7 +6,7 @@ public class OLote implements Comparable<OLote>{
 	private int almacen;
 	private double kg;
 	private int loteH;
-	private double tpc;
+	private int loteDest;
 	
 	public int getLoteH() {
 		return loteH;
@@ -14,19 +14,22 @@ public class OLote implements Comparable<OLote>{
 	public void setLoteH(int loteH) {
 		this.loteH = loteH;
 	}
-	public double getTpc() {
-		return tpc;
+	public int getloteDest() {
+		return loteDest;
 	}
-	public void setTpc(double tpc) {
-		this.tpc = tpc;
+	public void setloteDest(int loteDest) {
+		this.loteDest = loteDest;
 	}
 	
 	
 	
-	public OLote(int almacen, double kg,int loteH,double tpc) {
+	public OLote(int almacen, double kg,int loteH,int loteDest) {
 		super();
 		this.almacen = almacen;
 		this.kg = kg;
+		this.loteDest=loteDest;
+		this.loteH=loteH;
+		
 	}
 	public int getAlmacen() {
 		return almacen;

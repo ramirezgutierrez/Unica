@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
+import controlador.OLote;
 import controlador.OPreMezcla;
 
 public class MPreMezcla {
@@ -168,12 +170,12 @@ public class MPreMezcla {
 	public double getKgAlmacen(int lote, int almacen) {
 		
 		double kg=0;
-		
+		double kgrest=0;
 		
 		try {
-Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+			Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
 		
-		String sql="SELECT KG  FROM PROVISION WHERE LOTE=? AND ID_ALMACEN=?";
+		String sql="SELECT KG  FROM PROVISION WHERE LOTE=? AND ID_ALMACEN=? AND (ACCION='AÑADIDO' OR ACCION='AÑADIDO POR TRASPASO' OR ACCION='SUSTRAIDO POR TRASPASO') ";
 
 		PreparedStatement mist=miconexion.prepareStatement(sql);
 		
@@ -190,8 +192,36 @@ Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306
 			
 		}
 		
+		System.out.println(kg);
 		
 		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+		Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+		
+		String sql1="SELECT KG  FROM PROVISION WHERE LOTE=? AND ID_ALMACEN=? AND ACCION='SUSTRAIDO PARA PREMEZCLA'";
+		
+		PreparedStatement mist1=miconexion.prepareStatement(sql1);
+		
+		
+		mist1.setInt(1, lote);
+		mist1.setInt(2, almacen);
+		ResultSet rs1=mist1.executeQuery();
+		
+		
+		
+		while(rs1.next()) {
+			
+			kgrest=kgrest+rs1.getDouble(1);
+			
+			
+			
+		}
 		
 		
 		} catch (SQLException e) {
@@ -201,10 +231,8 @@ Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306
 		
 		
 		
-		
-		
-		
-		return kg;
+		System.out.println(kgrest);
+		return kg+kgrest;
 	}
 	
 	

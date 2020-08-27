@@ -564,6 +564,7 @@ public class AgregarPreLimpia extends JFrame {
 		 cbLotesM1.addItemListener(new ItemListener() {
 		 	public void itemStateChanged(ItemEvent e) {
 		 	
+		 		if(e.getStateChange()==ItemEvent.SELECTED) {
 		 		String envase;
 		 		double kg;
 		 		if(cbLotesM1.getItemCount()!=0) {
@@ -583,7 +584,7 @@ public class AgregarPreLimpia extends JFrame {
 			
 		 		}
 		 	}
-		 });
+		 }});
 		
 		
 		
@@ -723,7 +724,7 @@ public class AgregarPreLimpia extends JFrame {
 		
 		 cbLotesM2.addItemListener(new ItemListener() {
 			 	public void itemStateChanged(ItemEvent e) {
-			 	
+			 	if (e.getStateChange()==ItemEvent.SELECTED) {
 			 		String envase;
 			 		double kg;
 			 		if(cbLotesM2.getItemCount()!=0) {
@@ -743,10 +744,12 @@ public class AgregarPreLimpia extends JFrame {
 				
 			 		}
 			 	}
-			 });
+			 }});
 			
 		 cbLotesM3.addItemListener(new ItemListener() {
 			 	public void itemStateChanged(ItemEvent e) {
+			 		
+			 		if(e.getStateChange()==ItemEvent.SELECTED) {
 			 	
 			 		String envase;
 			 		double kg;
@@ -767,11 +770,12 @@ public class AgregarPreLimpia extends JFrame {
 				
 			 		}
 			 	}
-			 });
+			 }});
 			
 		 cbLotesM4.addItemListener(new ItemListener() {
 			 	public void itemStateChanged(ItemEvent e) {
 			 	
+			 		if(e.getStateChange()==ItemEvent.SELECTED) {
 			 		String envase;
 			 		double kg;
 			 		if(cbLotesM4.getItemCount()!=0) {
@@ -791,11 +795,11 @@ public class AgregarPreLimpia extends JFrame {
 				
 			 		}
 			 	}
-			 });
+			 }});
 			
 		 cbLotesM5.addItemListener(new ItemListener() {
 			 	public void itemStateChanged(ItemEvent e) {
-			 	
+			 		if(e.getStateChange()==ItemEvent.SELECTED) {
 			 		String envase;
 			 		double kg;
 			 		if(cbLotesM5.getItemCount()!=0) {
@@ -815,11 +819,11 @@ public class AgregarPreLimpia extends JFrame {
 				
 			 		}
 			 	}
-			 });
+			 }});
 			
 		 cbLotesM6.addItemListener(new ItemListener() {
 			 	public void itemStateChanged(ItemEvent e) {
-			 	
+			 		if(e.getStateChange()==ItemEvent.SELECTED) {
 			 		String envase;
 			 		double kg;
 			 		if(cbLotesM6.getItemCount()!=0) {
@@ -839,11 +843,12 @@ public class AgregarPreLimpia extends JFrame {
 				
 			 		}
 			 	}
-			 });
+			 }});
 			
 		 cbLotesM7.addItemListener(new ItemListener() {
 			 	public void itemStateChanged(ItemEvent e) {
 			 	
+			 		if(e.getStateChange()==ItemEvent.SELECTED) {
 			 		String envase;
 			 		double kg;
 			 		if(cbLotesM7.getItemCount()!=0) {
@@ -863,7 +868,7 @@ public class AgregarPreLimpia extends JFrame {
 				
 			 		}
 			 	}
-			 });
+			 }});
 		 panel_2.setVisible(false);
 		 pAdd1.setVisible(false);
 			pAdd2.setVisible(false);

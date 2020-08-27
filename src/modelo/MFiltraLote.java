@@ -85,7 +85,7 @@ public class MFiltraLote {
 		
 		
 		/*
-		 * rescatar sumatorio por kg en almacen
+		 * rescatar sumatorio de kg por almacen
 		 */
 		
 		String sql2="SELECT ID_ALMACEN,KG FROM PROVISION WHERE LOTE=? AND LOTE_MEZCLA=0 OR ACCION='SUSTRAIDO PARA PREMEZCLA'";
@@ -113,7 +113,7 @@ public class MFiltraLote {
 			while(rs2.next()) {
 				
 				try {
-					if (rs2.getInt(1)==alm) {
+					if (rs2.getInt(1)==alm) {//y igual a lotemezcla
 						contadorkg=contadorkg+rs2.getDouble(2);
 						
 						
@@ -124,7 +124,7 @@ public class MFiltraLote {
 				}
 				
 				
-			}OLote tempkg=new OLote(alm,contadorkg,lote,100);
+			}OLote tempkg=new OLote(alm,contadorkg,lote,0);
 			kgpa.add(tempkg);
 			
 			contadorkg=0;
@@ -143,41 +143,42 @@ public class MFiltraLote {
 	 * 
 	 */
 	
-	/*public List<OLote> getLotesMezclados(int lote){
-			List<OLote> tempLote=new ArrayList<OLote>();
-			try {
-			Connection miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
-			
-			String sql="SELECT KG FROM PROVISION WHERE LOTE=? AND IS NOT NULL(LOTE_MEZCLA)";
 
-			PreparedStatement mist=miconexion.prepareStatement(sql);
-			
-			mist.setInt(1, lote);
-			
-			ResultSet rs=mist.executeQuery();
-			
-			while(rs.next()) {
+	public List<OLote>  getkgLoteDestino(int lote) throws SQLException {
+		
+		List<OLote> listaD = new ArrayList<OLote>();
+		
+		List<OLote> lotesMezclados=new ArrayList<>();
+		
+		int cuentaAlmacen;
+		double cuentaKg;
+		int loteM;
 				
-				
-				tempLote.add(newOLote())
-				
-			}
+		Connection miconexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+		
+		String sql="SELECT ID_ALMACEN,KG,LOTE_MEZCLA FROM PROVISION WHERE LOTE=? AND ACCION='AÑADIDO PARA PREMEZCLA'";
+
+		PreparedStatement mist=miconexion.prepareStatement(sql);
+		
+		mist.setInt(1, lote);
+		
+		ResultSet rs=mist.executeQuery();
+		
+		while (rs.next()) {
+			
+			cuentaAlmacen=rs.getInt(1);
+			cuentaKg=rs.getDouble(2);
+			loteM=rs.getInt(3);
+			
+			OLote temp=new OLote(cuentaAlmacen,cuentaKg,lote,loteM);
+			lotesMezclados.add(temp);
 			
 			
-			
-			
-			
-			
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
+		}
 		
 		
 		
-		return tempLote;
 		
-	}*/
+		return lotesMezclados;
+}
 }

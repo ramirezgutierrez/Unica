@@ -27,6 +27,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
@@ -117,7 +118,9 @@ public class SeguimientoLote extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				double x=0;
 				int lote=Integer.parseInt(tflote.getText());
+				
 				MFiltraLote m=new MFiltraLote();
+				
 				try {
 				x=m.getkgcomprados(lote);
 				String cadena=String.valueOf(x);
@@ -143,7 +146,7 @@ public class SeguimientoLote extends JFrame {
 					e.printStackTrace();
 				}
 				}
-				double tpc1;
+				double tpc1 = 0;
 				DecimalFormat formato1 = new DecimalFormat("#.00");
 				
 				for(OLote tempLote : KgList) {
@@ -151,14 +154,38 @@ public class SeguimientoLote extends JFrame {
 					if(tempLote.getAlmacen()!=0) {
 					
 					tpc1=(tempLote.getKg()/x)*100;
-					;
+					
 						
 					model.addRow(new Object[] {tempLote.getAlmacen(), tempLote.getKg(),Integer.parseInt(tflote.getText()),formato1.format(tpc1)+"%"});
 					}
 					
 				}
+				List<OLote> lotesMezclados=new ArrayList<>();
 				
-			}});
+				try {
+					lotesMezclados=mp.getkgLoteDestino(lote);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				for(OLote tempLote:lotesMezclados) {
+					
+					
+					double tpc2 = (tempLote.getKg()/x)*100;
+					
+					model.addRow(new Object[] {tempLote.getAlmacen(), tempLote.getKg(),
+							Integer.parseInt(tflote.getText()),formato1.format(tpc2)+"%",tempLote.getloteDest()});
+				}
+					
+				}
+				
+
+		
+		
+		
+			
+		});
 		
 		btnUbicarDeLote.setBackground(Color.ORANGE);
 		
