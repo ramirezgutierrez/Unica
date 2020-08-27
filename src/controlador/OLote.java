@@ -3,6 +3,10 @@ package controlador;
 public class OLote implements Comparable<OLote>{
 
 	
+	@Override
+	public String toString() {
+		return "OLote [almacen=" + almacen + ", kg=" + kg + ", loteH=" + loteH + ", loteDest=" + loteDest + "]";
+	}
 	private int almacen;
 	private double kg;
 	private int loteH;
