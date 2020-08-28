@@ -14,9 +14,18 @@ import java.util.ListIterator;
 import controlador.OLote;
 
 
-
+/**
+ * clase que filtra el seguimiento de los lotes
+ * @author ramir
+ *
+ */
 public class MFiltraLote {
 	
+	/**
+	 * metodo que rescata el total de kg comprados de un lote
+	 * @param lote
+	 * @return double kgTotales
+	 */
 	public double getkgcomprados(int lote) {
 		double kg=0;
 		Connection miconexion;
@@ -51,6 +60,12 @@ public class MFiltraLote {
 		
 		
 }
+	/**
+	 * rescata los kg del lote que aún no han sido mezclados
+	 * @param lote
+	 * @return List<OLote> devuelve un ArrayList de objetos OLote 
+	 * @throws SQLException lanza excepción sql debido a las consultas parametrizadas
+	 */
 	public List<OLote>  getkgalmacen(int lote) throws SQLException {
 		
 		
@@ -140,23 +155,27 @@ public class MFiltraLote {
 		
 	}
 	
-	/**
-	 * metodo para sacar los valores pertenecientes a otros lotes
-	 * 
-	 */
 	
-
+	
+/**
+ * metodo para obtener una lista de lotes que han sido mezclados en los silos
+ * @param lote
+ * @return List<OLote> retorna un ArrayList de objetos de tipo OLote
+ * @throws SQLException lanza excepción sql debido a las consultas parametrizadas
+ */
 	public List<OLote>  getkgLoteDestino(int lote) throws SQLException {
 		
-		System.out.println(lote);
 		
-		List<OLote> lotesMezclados=new ArrayList<>();
+		
+		List<OLote> lotesMezclados=new ArrayList<>();//guardamos en esta lista todos los lotes que han servido para mezclarse
 		
 		int cuentaAlmacen;
 		double cuentaKg;
 		int loteM;
 				
 		Connection miconexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+		
+		//alamacenamos todas las partes del lote que han servido para una mezcla
 		
 		String sql="SELECT ID_ALMACEN,KG,LOTE_MEZCLA FROM PROVISION WHERE LOTE=? AND ACCION='AÑADIDO PARA PREMEZCLA'";
 
@@ -167,118 +186,58 @@ public class MFiltraLote {
 		ResultSet rs=mist.executeQuery();
 		
 		while (rs.next()) {
-			System.out.println(rs.getInt(1)+" "+rs.getDouble(2)+"  "+rs.getInt(3));
+			
 			cuentaAlmacen=rs.getInt(1);
 			cuentaKg=rs.getDouble(2);
 			loteM=rs.getInt(3);
 			
 			OLote temp=new OLote(cuentaAlmacen,cuentaKg,lote,loteM);
 			lotesMezclados.add(temp);
-			System.out.println(lotesMezclados.size());
+			
 			
 		}
 		
 		
-		System.out.println(lotesMezclados.size());
-		ArrayList<OLote> lotesFiltrados=new ArrayList<OLote>();
+		
+		ArrayList<OLote> lotesFiltrados=new ArrayList<OLote>();//lista donde acabaran filtrados los lotes provenientes de lotesMezclados
 		
 		
+	
 		
-		//for (OLote oLote : lotesMezclados) {
 			
-			/*for (ListIterator<OLote> iter = lotesMezclados.listIterator(); iter.hasNext(); ) {
-			    OLote temp = iter.next();
-			    System.out.println(temp.getAlmacen()+"  "+temp.getKg()+"  "+temp.getLoteH()+"  "+temp.getloteDest());
-			
-			    iter
-			    
-			   /* if(iter.hasNext()) {
-			    	
-			    	if(element.getAlmacen()==iter.next().getAlmacen() && 
-			    			element.getloteDest()==iter.next().getloteDest() && element.getLoteH()==iter.next().getLoteH() ) {
-			    		
-			    		OLote temp=new OLote(element.getAlmacen(),(element.getKg()+iter.next().getKg()),element.getLoteH(),element.getloteDest());
-			    		lotesFiltrados.add(temp);
-			    		System.out.println(lotesFiltrados.size());
-			    	}
-			    	
-			    	
-			    }*/
-			    
-			    
-			    
-			/*for (OLote oLote2 : lotesMezclados) {
-				if(it.hasNext()) {
-					it.next();
-				}
-				if(oLote.getAlmacen()==oLote2.getAlmacen() && oLote.getloteDest()==oLote2.getloteDest() 
-						&& oLote.getLoteH()==oLote2.getLoteH()) {
-					
-
-					double kgx=oLote.getKg()+oLote2.getKg();
-					
-					OLote tempn=new OLote(oLote.getAlmacen(),kgx,oLote.getLoteH(),oLote.getloteDest());
-					
-					lotesFiltrados.add(tempn);
-					System.out.println("lote añadido: "+oLote.getAlmacen()+"  "+kgx+" "+oLote.getLoteH()+"  "+oLote.getloteDest());
-					
-				}else {
-					
-					
-					
-				}
-			}
-			
-			
-			
-			
-			
-		}*/
+		boolean insertado=false;//bandera
 		
-		
-		
-		
-		int contador=0;
-		boolean insertado=false;
-		
-		//System.out.println("num de lotes mezclados"+lotesMezclados.size()+"\n"+lotesMezclados.get(0)+"\n"+lotesMezclados.get(1)+"\n"+lotesMezclados.get(2));
 			
 		if(lotesMezclados.size()!=1) {
 		for(int i=0;i<lotesMezclados.size();i++) {
-		
-				insertado=false;
-				System.out.println("vuelta a primero i="+(i)+ " cantidad de lotes: "+lotesMezclados.size()+"\n"+"analizando--  alamcen: "
-				+lotesMezclados.get(i).getAlmacen()+" kg: "+lotesMezclados.get(i).getKg()+" lote dest: "
-						+lotesMezclados.get(i).getloteDest());
 			
+			
+				insertado=false;//bandera para indicar que ha habido al menos una coincidencia y cambiar el sumatorio
+				
+			   
+			   double kgx=lotesMezclados.get(i).getKg();//variable iniciada para el sumatorio en el bucleanidado
+			   
 			
 			for (int j=0;j<lotesMezclados.size();j++) {//empieza en j=1 para empezar con el segundo elemento de la lista
 				
-				contador++;
 				
-				System.out.println("vueltas que da dentro del segundo "+contador);
-				if(i==j) {
-					//break;
+				
+				
+				if(i==j) {//condicion para que no se compare a si mismo
+					
 			}else if(lotesMezclados.get(i).getAlmacen()==lotesMezclados.get(j).getAlmacen() && lotesMezclados.get(i).getloteDest()==lotesMezclados.get(j).getloteDest()
 						&& lotesMezclados.get(i).getLoteH()==lotesMezclados.get(j).getLoteH()) {
 					
 					
 					
-					double kgx=lotesMezclados.get(i).getKg()+lotesMezclados.get(j).getKg();
 					
-					OLote tempn=new OLote(lotesMezclados.get(i).getAlmacen(),kgx,lotesMezclados.get(i).getLoteH(),lotesMezclados.get(i).getloteDest());
-					
+					 kgx=kgx+lotesMezclados.get(j).getKg();
 					
 					
-					lotesFiltrados.add(tempn);
-					//lotesMezclados.remove(j);
 					
-					//i=i+1;//adelanta el primer buble for ya que el suiente elemento ya a sido sumado.
-					System.out.println("j= "+j);
-					System.out.println("num lotes fitrados "+lotesFiltrados.size());
-					i=i+1;
+					i=i+1;//aumenta la posicion para no comparar el siguiente elemento
 					insertado=true;
-					//break;
+					
 					 
 					
 					
@@ -286,24 +245,28 @@ public class MFiltraLote {
 					
 				
 			}
-		}if(insertado==false)lotesFiltrados.add(lotesMezclados.get(i));
-		System.out.println("num lotes fitrados"+lotesFiltrados.size());	
+
+				 
+		
+				
+		}
+			if(insertado==true)	lotesFiltrados.add(new OLote(lotesMezclados.get(i).getAlmacen(),
+					kgx,lotesMezclados.get(i).getLoteH(),lotesMezclados.get(i).getloteDest()));//inserta el sumatorio
+			//de las coincidencias
+			if(insertado==false)lotesFiltrados.add(lotesMezclados.get(i));//si no coincide es insertado sin cambios
 			
 				
 			}
 		}else {
 			
-			/*lotesFiltrados=(ArrayList<OLote>) lotesMezclados;
-			System.out.println(lotesMezclados.size()+"\n"+lotesFiltrados.size());*/
-			//System.out.println("lote: "+lotesFiltrados.get(1).getAlmacen()+"  "+lotesFiltrados.get(1).getKg()+"  "+lotesFiltrados.get(1).getLoteH()+"  "+lotesFiltrados.get(1).getloteDest());
-		}
+			}
 		
 			
 			
 			
 		
 		
-		//return lotesMezclados;
+		
 		return lotesFiltrados;
 }
 }
