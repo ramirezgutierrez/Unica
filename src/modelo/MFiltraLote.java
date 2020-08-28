@@ -128,7 +128,7 @@ public class MFiltraLote {
 			rs2=mist2.executeQuery();
 			
 			while(rs2.next()) {
-				//System.out.println("resultset almacen:"+rs2.getInt(1)+" kg: "+rs2.getDouble(2)+" lote: "+lote);
+				
 				try {
 					if (rs2.getInt(1)==alm) {                //y igual a lotemezcla
 						contadorkg=contadorkg+rs2.getDouble(2);

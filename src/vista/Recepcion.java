@@ -17,6 +17,7 @@ import org.jfree.chart.ChartPanel;
 
 import controlador.Graficas;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class Recepcion extends JPanel {
 
@@ -28,6 +29,9 @@ public class Recepcion extends JPanel {
 		
 		Graficas panel=new Graficas();
 		ChartPanel panelt=panel.CreaPanelTarta(1);
+		ChartPanel panelt1=panel.CreaPanelTarta(2);
+		ChartPanel panelt2=panel.CreaPanelTarta(3);
+		
 		
 		
 		
@@ -48,35 +52,35 @@ public class Recepcion extends JPanel {
 				seguimiento.setDefaultCloseOperation(seguimiento.DISPOSE_ON_CLOSE);
 			}
 		});
-		add(panelt);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.add(panelt);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lblproveedores)
-					.addGap(203)
-					.addComponent(btnAgregarProveedor)
-					.addContainerGap(364, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(18, Short.MAX_VALUE)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 605, GroupLayout.PREFERRED_SIZE)
-					.addGap(151))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnAgregarProveedor))
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 1081, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(23, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnAgregarProveedor))
-						.addComponent(lblproveedores))
-					.addGap(108)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(139, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblproveedores)
+						.addComponent(btnAgregarProveedor))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
+					.addContainerGap())
 		);
+		panel_1.setLayout(new GridLayout(0, 3, 0, 0));
+		panel_1.add(panelt);
+		panel_1.add(panelt1);
+		panel_1.add(panelt2);
+		
 		setLayout(groupLayout);
 		
 
