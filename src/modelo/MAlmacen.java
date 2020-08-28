@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlador.OAlmacen;
+import controlador.OLote;
 import controlador.Oproveedores;
 
 
@@ -86,5 +87,119 @@ List<OAlmacen> almacenes=new ArrayList<>();
 		}
 			
 		}
+	
+	
+	public double getCapacidad(int Id){
+		double capacidad = 0;
+		Connection miconexion;
+		try {
+			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+			String sql="SELECT CAPACIDAD FROM ALMACEN WHERE ID=?";
+			PreparedStatement mist=miconexion.prepareStatement(sql);
+			mist.setInt(1, Id);
+						
+			ResultSet rs=mist.executeQuery();
+			while(rs.next()) {
+				
+				capacidad=rs.getDouble(1);
+				
+				
+			}
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error en consulta");
+			e.printStackTrace();
 		}
+		
+		
+		return capacidad;
+		
+		
+	}
+	
+	public List<OLote> getSumLotesPorAlmacenComprados(int id){
+		
+		List<OLote> lotesAlmacen=new ArrayList<OLote>();
+		
+		Connection miconexion;
+		try {
+			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+		
+			String sql="SELECT SUM(KG),LOTE FROM PROVISION WHERE ID_ALMACEN=? AND (LOTE_MEZCLA=0 OR ACCION='SUSTRAIDO PARA PREMEZCLA') GROUP BY LOTE";
 
+			PreparedStatement mist=miconexion.prepareStatement(sql);
+			
+			mist.setInt(1,id);
+			
+			ResultSet rs=mist.executeQuery();
+			
+			while (rs.next()) {
+				
+			double kg=rs.getDouble(1);
+			int lote=rs.getInt(2);
+			
+				
+				
+				
+				OLote tempkg=new OLote(id,kg,lote,0);
+				lotesAlmacen.add(tempkg);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error en consulta");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return lotesAlmacen;
+		
+		
+		
+		
+		
+	}public List<OLote> getSumLotesPorAlmacenCreados(int id){
+		
+		List<OLote> lotesAlmacenCreados=new ArrayList<OLote>();
+		
+		Connection miconexion;
+		try {
+			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+		
+			String sql="SELECT SUM(KG),LOTE_MEZCLA FROM PROVISION WHERE ID_ALMACEN=? AND ACCION='AÑADIDO PARA PREMEZCLA' GROUP BY LOTE_MEZCLA";
+
+			PreparedStatement mist=miconexion.prepareStatement(sql);
+			
+			mist.setInt(1,id);
+			
+			ResultSet rs=mist.executeQuery();
+			
+			while (rs.next()) {
+				
+				
+				double kg=rs.getDouble(1);
+				int lote=rs.getInt(2);
+				
+					
+					
+					
+					OLote tempkg=new OLote(id,kg,lote,0);
+					lotesAlmacenCreados.add(tempkg);
+				}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error en consulta");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return lotesAlmacenCreados;
+		
+	}
+}

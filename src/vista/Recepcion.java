@@ -13,6 +13,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import org.jfree.chart.ChartPanel;
+
+import controlador.Graficas;
+import java.awt.FlowLayout;
+
 public class Recepcion extends JPanel {
 
 	/**
@@ -20,6 +25,11 @@ public class Recepcion extends JPanel {
 	 */
 	public Recepcion() {
 		setBackground(Color.WHITE);
+		
+		Graficas panel=new Graficas();
+		ChartPanel panelt=panel.CreaPanelTarta(1);
+		
+		
 		
 		JLabel lblproveedores = new JLabel("RECEPCI\u00D3N");
 		lblproveedores.setHorizontalAlignment(SwingConstants.CENTER);
@@ -38,24 +48,37 @@ public class Recepcion extends JPanel {
 				seguimiento.setDefaultCloseOperation(seguimiento.DISPOSE_ON_CLOSE);
 			}
 		});
+		add(panelt);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.add(panelt);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addComponent(lblproveedores)
+					.addGap(203)
 					.addComponent(btnAgregarProveedor)
-					.addContainerGap(501, Short.MAX_VALUE))
+					.addContainerGap(364, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(18, Short.MAX_VALUE)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 605, GroupLayout.PREFERRED_SIZE)
+					.addGap(151))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAgregarProveedor))
-					.addContainerGap(690, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnAgregarProveedor))
+						.addComponent(lblproveedores))
+					.addGap(108)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(139, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
+		
 
 	}
 }
