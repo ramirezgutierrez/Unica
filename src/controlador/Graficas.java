@@ -33,6 +33,7 @@ public class Graficas {
 		
 		 
 		MAlmacen m=new MAlmacen();
+		
 		double capacidad=m.getCapacidad(id);
 		
 		List<OLote> lotesAlmacen=new ArrayList<OLote>();
@@ -57,12 +58,12 @@ public class Graficas {
 			disp=disp+lotesAlmacenM.get(i).getKg();
 			contadorSeccion++;
 		}}else {
-			almacenes.setValue("Almacén vacio: Espacio total:", m.getCapacidad(id));
+			almacenes.setValue("Almacén vacio: Espacio total: "+m.getCapacidad(id)+ " kg", m.getCapacidad(id));
 		}
 		double disptotal= capacidad-disp;
 		
 		if(lotesAlmacen.isEmpty()==false || lotesAlmacenM.isEmpty()==false) {
-		almacenes.setValue("Espacio disponible:", disptotal);}
+		almacenes.setValue("Espacio disponible: "+disptotal+ " kg", disptotal);}
 		//Rectangle leyenda=new Rectangle(0,0);
 		
 		JFreeChart cha=ChartFactory.createPieChart3D("Almacén: "+id, almacenes,true,true,true);
@@ -106,6 +107,36 @@ public class Graficas {
 		
 		return oPanell;
 	}
+	public List<ChartPanel> getGraficos() throws Exception{
 	
+		MAlmacen m=new MAlmacen();
+	
+	List<ChartPanel> listaPaneles=new ArrayList<ChartPanel>();
+	
+	List<OAlmacen> listaAlmacenes=new ArrayList<OAlmacen>();
+	
+	listaAlmacenes=m.getAlmacenes();
+	int[] idAlm=new int[listaAlmacenes.size()];
+	
+	for(int i=0;i<listaAlmacenes.size();i++) {
+		
+	idAlm[i]=listaAlmacenes.get(i).getId();	
+		
+		
+		
+	}
+	Graficas panel=new Graficas();
+	for(int i=0;i<idAlm.length;i++) {
+		
+		listaPaneles.add(panel.CreaPanelTarta(idAlm[i]));
+		
+		
+	}
+	
+	
+	return listaPaneles;
+	
+	
+	}
 	
 }

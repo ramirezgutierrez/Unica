@@ -10,6 +10,8 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -28,9 +30,19 @@ public class Recepcion extends JPanel {
 		setBackground(Color.WHITE);
 		
 		Graficas panel=new Graficas();
-		ChartPanel panelt=panel.CreaPanelTarta(1);
+		List<ChartPanel> ListaPaneles=new ArrayList<ChartPanel>();
+		
+		try {
+			ListaPaneles=panel.getGraficos();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		/*ChartPanel panelt=panel.CreaPanelTarta(1);
 		ChartPanel panelt1=panel.CreaPanelTarta(2);
-		ChartPanel panelt2=panel.CreaPanelTarta(3);
+		ChartPanel panelt2=panel.CreaPanelTarta(3);*/
 		
 		
 		
@@ -54,6 +66,7 @@ public class Recepcion extends JPanel {
 		});
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -76,10 +89,27 @@ public class Recepcion extends JPanel {
 					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
 					.addContainerGap())
 		);
-		panel_1.setLayout(new GridLayout(0, 3, 0, 0));
-		panel_1.add(panelt);
+		panel_1.setLayout(new GridLayout(1, 1, 0, 0));
+		if(ListaPaneles.size()>2 && ListaPaneles.size()<=4) {
+			panel_1.setLayout(new GridLayout(2,2,0,0));
+		}else if(ListaPaneles.size()>4 && ListaPaneles.size()<=6) {
+			panel_1.setLayout(new GridLayout(2,3,0,0));
+		}else if(ListaPaneles.size()>6 && ListaPaneles.size()<=9) {
+			panel_1.setLayout(new GridLayout(3,3,0,0));
+		}else {
+			
+		}
+		
+		for(int i=0;i<ListaPaneles.size();i++) {
+			
+			panel_1.add(ListaPaneles.get(i));
+			
+			
+		}
+		
+		/*panel_1.add(panelt);
 		panel_1.add(panelt1);
-		panel_1.add(panelt2);
+		panel_1.add(panelt2);*/
 		
 		setLayout(groupLayout);
 		
