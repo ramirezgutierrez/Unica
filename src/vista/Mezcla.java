@@ -54,6 +54,17 @@ public class Mezcla extends JPanel {
 		btnOrdenDeLimpia.setBackground(Color.ORANGE);
 		
 		JButton btnCrearDeposito = new JButton("Crear Deposito Acondicionado");
+		btnCrearDeposito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			AgregarDepositoAcondicionado	nuevoform= new AgregarDepositoAcondicionado();
+			
+			nuevoform.setVisible(true);
+			nuevoform.setDefaultCloseOperation(nuevoform.DISPOSE_ON_CLOSE);
+			
+			
+			}
+		});
 		btnCrearDeposito.setBackground(Color.ORANGE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -65,8 +76,8 @@ public class Mezcla extends JPanel {
 					.addGap(18)
 					.addComponent(btnOrdenDeLimpia, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnCrearDeposito, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(158, Short.MAX_VALUE))
+					.addComponent(btnCrearDeposito, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(120, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -76,7 +87,7 @@ public class Mezcla extends JPanel {
 						.addComponent(btnMezclaPrelimpia)
 						.addComponent(btnOrdenDeLimpia)
 						.addComponent(btnCrearDeposito))
-					.addContainerGap(270, Short.MAX_VALUE))
+					.addContainerGap(501, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 

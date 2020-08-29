@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.OAlmacen;
+import controlador.ODepositoAcondicionado;
 import modelo.MAlmacen;
+import modelo.MDepositoAcondicionado;
 
 import java.awt.Color;
 import javax.swing.GroupLayout;
@@ -134,13 +136,15 @@ public class AgregarDepositoAcondicionado extends JFrame {
 		tfid.setFocusCycleRoot(true);
 		tfid.setColumns(10);
 		
+		
+		
 		JButton btnagregar = new JButton("Agregar");
 		btnagregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
-				
-
+				MDepositoAcondicionado m=new MDepositoAcondicionado();
+				ODepositoAcondicionado	dep=new ODepositoAcondicionado(Integer.parseInt(tfid.getText()), tfTipo.getText(),Double.parseDouble(tfCapacidad.getText()));
+				m.setDeposito(dep);
 				
 				
 				

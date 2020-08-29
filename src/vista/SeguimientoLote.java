@@ -53,17 +53,11 @@ public class SeguimientoLote extends JFrame {
 	}
 	
 	
-	//Object[] prova=prov.toArray();
+	
 	private JTable table;
 	private JTextField tflote;
 	
-	//proveedores=mp.getProveedores();
-	/*try {
-		
-	}catch (Exception e){
-		System.out.println("error");
-		
-	}*/
+	
 	
 		
 	
