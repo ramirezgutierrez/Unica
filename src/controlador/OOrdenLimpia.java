@@ -10,9 +10,11 @@ public class OOrdenLimpia {
 	private double kg;
 	private int loteMezcla;
 	private Date fecha;
-	private int almOrigen;
+
 	private int depAcondicionado;
 	private double merma;
+	
+	
 	public int getCodOrden() {
 		return codOrden;
 	}
@@ -43,12 +45,7 @@ public class OOrdenLimpia {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public int getAlmOrigen() {
-		return almOrigen;
-	}
-	public void setAlmOrigen(int almOrigen) {
-		this.almOrigen = almOrigen;
-	}
+	
 	public int getDepAcondicionado() {
 		return depAcondicionado;
 	}
@@ -61,15 +58,14 @@ public class OOrdenLimpia {
 	public void setMerma(double merma) {
 		this.merma = merma;
 	}
-	public OOrdenLimpia(int codOrden, int empleado, double kg, int loteMezcla, Date fecha, int almOrigen,
-			int depAcondicionado, double merma) {
+	public OOrdenLimpia(int codOrden, int empleado, double kg, int loteMezcla, Date fecha,int depAcondicionado, double merma) {
 		super();
 		this.codOrden = codOrden;
 		this.empleado = empleado;
 		this.kg = kg;
 		this.loteMezcla = loteMezcla;
 		this.fecha = fecha;
-		this.almOrigen = almOrigen;
+		
 		this.depAcondicionado = depAcondicionado;
 		this.merma = merma;
 	}

@@ -7,10 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import controlador.OLote;
 import controlador.OOrdenLimpia;
+import controlador.OOrdenTraspaso;
+
 
 public class MOrdenLimpia {
 
@@ -20,8 +23,8 @@ public class MOrdenLimpia {
 		try {
 			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
 			
-			String sql="INSERT INTO ORDEN_LIMPIA(COD_ORDEN,EMPLEADO,KG,LOTE_MEZCLA,FECHA,DEPOSITO_ACONDICIONADO,ALMACEN_ORIGEN,PERDIDA_LIMPIA)"
-					+ "VALUES(?,?,?,?,?,?,?,?)";
+			String sql="INSERT INTO ORDEN_LIMPIA(COD_ORDEN,EMPLEADO,KG,LOTE_MEZCLA,FECHA,DEPOSITO_ACONDICIONADO,PERDIDA_LIMPIA)"
+					+ "VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement mist=miconexion.prepareStatement(sql);
 			
 			mist.setInt(1, orden.getCodOrden());
@@ -36,8 +39,8 @@ public class MOrdenLimpia {
 			
 			mist.setDate(5,fechasql);
 			mist.setInt(6, orden.getDepAcondicionado());
-			mist.setInt(7, orden.getAlmOrigen());
-			mist.setDouble(8, orden.getMerma());
+			
+			mist.setDouble(7, orden.getMerma());
 			
 			mist.execute();
 			
@@ -199,5 +202,49 @@ public List<OLote>  getkgLotecreado(int lote) throws SQLException {
 	
 	return lotesMezclados;
 }
+	public void SetLimpiaProvision(OOrdenTraspaso trasp) {
+		double provision=0;
+		//public OOrdenTraspaso(int codord, int empleado, double kg, int lote, Date fecha, int almOrigen, int almDestino)
+		Connection miconexion;
+		
+		try {
+			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+			
+			String sql2="SELECT PROVISION FROM PROVISION WHERE ID_ALMACEN=?";
+			PreparedStatement mist=miconexion.prepareStatement(sql2);
+			mist.setInt(1, trasp.getAlmOrigen());
+			ResultSet rs=mist.executeQuery();
+			while(rs.next()){
+				provision=rs.getDouble(1);
+				
+			}
+			
+			String sql="INSERT INTO PROVISION(ID_ALMACEN,LOTE,KG,ACCION,PROVISION,ID_TRANSACCION,LOTE_MEZCLA)"+
+					"VALUES(?,?,?,?,?,?,?)";
+			PreparedStatement mist2=miconexion.prepareStatement(sql);
+			
+			mist2.setInt(1, trasp.getAlmOrigen());
+			
+			mist2.setInt(2, 0);
+			mist2.setDouble(3,-trasp.getKg());
+			mist2.setString(4,  "SUSTRAIDO PARA LIMPIA ");
+			mist2.setDouble(5, provision-trasp.getKg());
+			mist2.setInt(6, 0);
+			mist2.setInt(7, trasp.getCodNuevoLote());
+		
+		
+		
+			mist2.execute();
+		
+		
+		
+		
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		System.out.println("error en consulta");
+		e.printStackTrace();
+	}
+	}
 
 }
