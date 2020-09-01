@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JToolBar;
 import javax.swing.border.Border;
+
+import controlador.OPanelFondo;
+
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,7 +23,7 @@ import java.awt.event.ActionEvent;
 public class FormPpal  {
 
 	private JFrame frmFlowIntegralSystem;
-
+	private OPanelFondo p;
 	/**
 	 * Launch the application.
 	 */
@@ -67,7 +70,7 @@ public class FormPpal  {
 		frmFlowIntegralSystem.setExtendedState(frmFlowIntegralSystem.MAXIMIZED_BOTH);
 		frmFlowIntegralSystem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
+		 p=new OPanelFondo();
 		JPanel panel = new JPanel();
 		panel.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -310,7 +313,8 @@ public class FormPpal  {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				
+				Chat cha=new Chat();
+				nuevoPanel(cha);
 			}
 		});
 		lblchat.setOpaque(true);
@@ -449,6 +453,7 @@ public class FormPpal  {
 		panel_opciones.setLayout(gl_panel_opciones);
 		
 		panel_card = new JPanel();
+		panel_card.add(p);
 		panel_card.setBackground(new Color(255, 255, 255));
 		frmFlowIntegralSystem.getContentPane().add(panel_card, BorderLayout.CENTER);
 		panel_card.setLayout(new CardLayout(0, 0));
@@ -469,7 +474,9 @@ public class FormPpal  {
 	public void nuevoPanel(JPanel panelActual) {
 		
 		panel_card.removeAll();
+		panelActual.add(p);
 		panel_card.add(panelActual);
+		
 		panel_card.repaint();
 		panel_card.revalidate();
 			

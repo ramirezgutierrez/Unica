@@ -1,5 +1,6 @@
 package controlador;
 import org.jfree.chart.*;
+import org.jfree.chart.encoders.KeypointPNGEncoderAdapter;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
@@ -11,6 +12,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,29 +53,42 @@ public class Graficas {
 			disp=disp+lotesAlmacen.get(i).getKg();
 			contadorSeccion++;
 			
-		}}
+		}} 
 		if(lotesAlmacenM.isEmpty()==false) {
 		for(int i=0;i<lotesAlmacenM.size();i++) {
 			almacenes.setValue("lote creado: "+lotesAlmacenM.get(i).getLoteH()+", "+lotesAlmacenM.get(i).getKg()+" kg", lotesAlmacenM.get(i).getKg());
 			disp=disp+lotesAlmacenM.get(i).getKg();
 			contadorSeccion++;
-		}}else {
+		}}
+		
+		if (lotesAlmacen.isEmpty() && lotesAlmacenM.isEmpty()){
 			almacenes.setValue("Almacén vacio: Espacio total: "+m.getCapacidad(id)+ " kg", m.getCapacidad(id));
 		}
 		double disptotal= capacidad-disp;
 		
 		if(lotesAlmacen.isEmpty()==false || lotesAlmacenM.isEmpty()==false) {
 		almacenes.setValue("Espacio disponible: "+disptotal+ " kg", disptotal);}
-		//Rectangle leyenda=new Rectangle(0,0);
+		
 		
 		JFreeChart cha=ChartFactory.createPieChart3D("Almacén: "+id, almacenes,true,true,true);
-		cha.setBackgroundPaint(Color.WHITE);
+		
+		
+		//------------------------------------
+		
+	
+		
+		
+		//--------------------------
+		
+		
+		
+		cha.setBackgroundPaint(new Color(0,0,0,0));
+		
+		cha.setBackgroundImageAlpha(0.05f);
 		cha.setBorderVisible(false);
 		cha.getLegend().setBackgroundPaint(Color.WHITE);
 		cha.getLegend().setItemFont(new Font("SimSun", Font.BOLD, 14));
-		//cha.getLegend().setBounds(leyenda);
-		//cha.getLegend().setHeight(100);
-		//cha.getLegend().setWidth(200);
+		
 				
 		cha.getPlot().setNoDataMessagePaint(Color.WHITE);
 		cha.getPlot().setNoDataMessageFont(new Font("SimSun", Font.BOLD, 14));
@@ -84,7 +99,9 @@ public class Graficas {
 		
 		
 		
-		PiePlot3D plot = ( PiePlot3D )cha.getPlot();
+		 PiePlot3D plot = ( PiePlot3D )cha.getPlot();
+		 plot.setBackgroundPaint(new Color(0xFF, 0xFF, 0xFF, 0));
+		 plot.setBackgroundImageAlpha(0.5f);
 		  plot.setDepthFactor(0.3);
 		  plot.setDarkerSides(false);
 		  
@@ -92,8 +109,6 @@ public class Graficas {
 		  plot.setDirection(rota);//direccion
 		  plot.setInteriorGap(0.2);//tamaño de la tarta
 		  plot.setStartAngle(360);//donde empieza a girar la representacion de los datos
-		  //plot.setLabelGap(0.4);
-		  //plot.leg
 		  
 
 		  plot.setLabelGenerator(null); 
@@ -101,9 +116,14 @@ public class Graficas {
 		  plot.setLabelOutlinePaint(Color.BLACK);
 		  plot.setLabelFont(new Font("SimSun", Font.BOLD, 20));
 		  plot.setSectionPaint(contadorSeccion,Color.ORANGE);
+		  plot.setBackgroundPaint(new Color(0xFF,0xFF,0xFF,0));
+		  plot.setBackgroundAlpha(0.0f);
+		  
 		 
 		  
 		ChartPanel oPanell=new ChartPanel(cha);
+		oPanell.setBackground(new Color(0xFF, 0xFF, 0xFF, 0));
+		oPanell.setOpaque(false);
 		
 		return oPanell;
 	}
@@ -126,6 +146,7 @@ public class Graficas {
 		
 	}
 	Graficas panel=new Graficas();
+	
 	for(int i=0;i<idAlm.length;i++) {
 		
 		listaPaneles.add(panel.CreaPanelTarta(idAlm[i]));

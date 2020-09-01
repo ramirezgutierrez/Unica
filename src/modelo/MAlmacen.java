@@ -127,7 +127,7 @@ List<OAlmacen> almacenes=new ArrayList<>();
 		try {
 			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
 		
-			String sql="SELECT SUM(KG),LOTE FROM PROVISION WHERE ID_ALMACEN=? AND (LOTE_MEZCLA=0 OR ACCION='SUSTRAIDO PARA PREMEZCLA') GROUP BY LOTE";
+			String sql="SELECT SUM(KG),LOTE FROM PROVISION WHERE ID_ALMACEN=? AND (LOTE_MEZCLA=0 OR ACCION='SUSTRAIDO PARA PREMEZCLA' OR ACCION='AÑADIDO POR TRASPASO') GROUP BY LOTE";
 
 			PreparedStatement mist=miconexion.prepareStatement(sql);
 			

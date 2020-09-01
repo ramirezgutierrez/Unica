@@ -8,6 +8,11 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import com.sun.xml.internal.ws.api.server.Container;
+
+import controlador.OPanelFondo;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,6 +24,8 @@ public class Proveeedores extends JPanel {
 	 */
 	public Proveeedores() {
 		setBackground(Color.WHITE);
+		
+		
 		
 		JLabel lblproveedores = new JLabel("  PROVEEDORES  ");
 		lblproveedores.setOpaque(true);

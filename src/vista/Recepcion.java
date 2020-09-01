@@ -40,10 +40,7 @@ public class Recepcion extends JPanel {
 		}
 		
 		
-		/*ChartPanel panelt=panel.CreaPanelTarta(1);
-		ChartPanel panelt1=panel.CreaPanelTarta(2);
-		ChartPanel panelt2=panel.CreaPanelTarta(3);*/
-		
+	
 		
 		
 		
@@ -66,15 +63,17 @@ public class Recepcion extends JPanel {
 		});
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
+		
+		panel_1.setBackground(Color.PINK);
+		panel_1.setOpaque(false);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+							.addGap(41)
 							.addComponent(btnAgregarProveedor))
 						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 1081, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(23, Short.MAX_VALUE))
@@ -83,7 +82,7 @@ public class Recepcion extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblproveedores)
+						.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAgregarProveedor))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
