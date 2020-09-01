@@ -45,7 +45,8 @@ public class MFiltraLote {
 			kg=rs.getDouble(1);
 		}
 		
-		
+		miconexion.close();
+		rs.close();
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,7 +150,9 @@ public class MFiltraLote {
 		}
 		
 		
-		
+		miconexion.close();
+		rs.close();
+		rs2.close();
 		
 		return kgpa;
 		
@@ -263,10 +266,44 @@ public class MFiltraLote {
 		
 			
 			
-			
+		miconexion.close();
+		rs.close();
+		
 		
 		
 		
 		return lotesFiltrados;
 }
+	public double  getkgLimpia(int lote) throws SQLException {
+		
+		double kgTotales=0;
+		
+		
+        Connection miconexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
+		
+		//alamacenamos todas las partes del lote que han servido para una mezcla
+		
+		String sql="SELECT SUM(KG) FROM PROVISION WHERE (LOTE=? AND ACCION='SUSTRAIDO PARA LIMPIA')";
+
+		PreparedStatement mist=miconexion.prepareStatement(sql);
+		
+		mist.setInt(1, lote);
+		
+		ResultSet rs=mist.executeQuery();
+		
+		
+		
+		while (rs.next()) {
+			
+			
+			kgTotales=rs.getDouble(1);
+		}
+			
+		
+		
+		
+		
+		
+		return kgTotales;
+	}
 }

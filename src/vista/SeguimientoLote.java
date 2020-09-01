@@ -110,6 +110,13 @@ public class SeguimientoLote extends JFrame {
 		JButton btnUbicarDeLote = new JButton("UBICAR DE LOTE");
 		btnUbicarDeLote.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+		
+				int numDatos = model.getRowCount();
+				for (int i = 0; i < numDatos; i++) {
+				 model.removeRow(0);
+				}
+				
 				double x=0;
 				int lote=Integer.parseInt(tflote.getText());
 				
@@ -171,9 +178,27 @@ public class SeguimientoLote extends JFrame {
 					model.addRow(new Object[] {tempLote.getAlmacen(), tempLote.getKg(),
 							Integer.parseInt(tflote.getText()),formato1.format(tpc2)+"%",tempLote.getloteDest()});
 				}
-					
-				}
 				
+				double s=0;
+				try {
+					s = mp.getkgLimpia(lote);
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+					
+					if(s!=0) {
+					s=s*(-1);
+				
+				
+				double tpc3= (s/x)*100;
+				
+				model.addRow(new Object[] {"SUSTRAIDO PARA LIMPIA",s,lote,formato1.format(tpc3)+"%",""});
+				
+				
+				
+				}
+			}
 
 		
 		
