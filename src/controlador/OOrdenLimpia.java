@@ -5,6 +5,11 @@ import java.util.Date;
 public class OOrdenLimpia {
 	
 	
+	@Override
+	public String toString() {
+		return "" + lote;
+	}
+
 	private int codOrden;
 	private int empleado;
 	private double kg;
@@ -73,9 +78,10 @@ public class OOrdenLimpia {
 	int lote;
 	int tipo;
 	public OOrdenLimpia(int lote,int tipo) {
-		
+		super();
 		this.lote=lote;
 		this.tipo=tipo;
+		
 		
 		
 		
@@ -92,5 +98,8 @@ public class OOrdenLimpia {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
+	
+ 
+	
 
 }

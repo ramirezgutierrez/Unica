@@ -11,8 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 import controlador.OLote;
+import controlador.OLoteN;
 import controlador.OOrdenLimpia;
-import controlador.OOrdenTraspaso;
+
 
 
 public class MOrdenLimpia {
@@ -45,7 +46,7 @@ public class MOrdenLimpia {
 			mist.execute();
 			
 		
-		
+			miconexion.close();
 		
 		
 		} catch (SQLException e) {
@@ -63,9 +64,9 @@ public class MOrdenLimpia {
 		}
 		
 		
-	public List<OOrdenLimpia> getLotesMezcla(){
+	public List<OLoteN> getLotesMezcla(){
 		
-		List<OOrdenLimpia> listaLotesM=new ArrayList<OOrdenLimpia>();
+		List<OLoteN> listaLotesM=new ArrayList<OLoteN>();
 		
 		Connection miconexion;
 		try {
@@ -80,7 +81,7 @@ public class MOrdenLimpia {
 				int lote=rs.getInt(1);
 				
 				
-				OOrdenLimpia temp=new OOrdenLimpia(lote,1);
+				OLoteN temp=new OLoteN(lote,"CREADO");
 				listaLotesM.add(temp);
 			}
 			rs.close();
@@ -95,12 +96,13 @@ public class MOrdenLimpia {
 				
 			
 				
-				OOrdenLimpia temp=new OOrdenLimpia(lote,2);
+				OLoteN temp=new OLoteN(lote,"COMPRADO");
 				listaLotesM.add(temp);
 			}
 			
-			
-			
+			miconexion.close();
+			rs.close();
+			rs2.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -154,7 +156,8 @@ public List<OLote>  getkgLotecreado(int lote) throws SQLException {
 		}
 		
 		
-		
+		miconexion.close();
+		rs.close();
 	
 		
 		
@@ -194,7 +197,8 @@ public List<OLote>  getkgLotecreado(int lote) throws SQLException {
 		
 		
 	}
-	
+	miconexion.close();
+	rs.close();
 	
 	
 
@@ -202,48 +206,53 @@ public List<OLote>  getkgLotecreado(int lote) throws SQLException {
 	
 	return lotesMezclados;
 }
-	public void SetLimpiaProvision(OOrdenTraspaso trasp) {
+	public void SetLimpiaProvision(controlador.OOrdenLimpiaProvision trasp) {
 		double provision=0;
-		//public OOrdenTraspaso(int codord, int empleado, double kg, int lote, Date fecha, int almOrigen, int almDestino)
+		
 		Connection miconexion;
 		
 		try {
+			
 			miconexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/harinera", "root", "");
 			
-			String sql2="SELECT PROVISION FROM PROVISION WHERE ID_ALMACEN=?";
-			PreparedStatement mist=miconexion.prepareStatement(sql2);
-			mist.setInt(1, trasp.getAlmOrigen());
+			String sql="SELECT PROVISION FROM PROVISION WHERE ID_ALMACEN=?";
+			PreparedStatement mist=miconexion.prepareStatement(sql);
+			mist.setInt(1, trasp.getId_alm());
 			ResultSet rs=mist.executeQuery();
 			while(rs.next()){
 				provision=rs.getDouble(1);
 				
 			}
 			
-			String sql="INSERT INTO PROVISION(ID_ALMACEN,LOTE,KG,ACCION,PROVISION,ID_TRANSACCION,LOTE_MEZCLA)"+
+		
+			
+			String sql2="INSERT INTO PROVISION(ID_ALMACEN,LOTE,KG,ACCION,PROVISION,ID_TRANSACCION,LOTE_MEZCLA)"+
 					"VALUES(?,?,?,?,?,?,?)";
-			PreparedStatement mist2=miconexion.prepareStatement(sql);
+			PreparedStatement mist2=miconexion.prepareStatement(sql2);
 			
-			mist2.setInt(1, trasp.getAlmOrigen());
+			mist2.setInt(1, trasp.getId_alm());
 			
-			mist2.setInt(2, 0);
+			mist2.setInt(2, trasp.getLote_comprado());
 			mist2.setDouble(3,-trasp.getKg());
 			mist2.setString(4,  "SUSTRAIDO PARA LIMPIA ");
 			mist2.setDouble(5, provision-trasp.getKg());
 			mist2.setInt(6, 0);
-			mist2.setInt(7, trasp.getCodNuevoLote());
-		
+			mist2.setInt(7, trasp.getLote_mezcla());
+			
 		
 		
 			mist2.execute();
 		
 		
-		
+			miconexion.close();
 		
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		System.out.println("error en consulta");
 		e.printStackTrace();
+	}finally {
+		
 	}
 	}
 

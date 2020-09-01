@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.OLote;
+import controlador.OLoteN;
 import controlador.OOrdenLimpia;
+import controlador.OOrdenLimpiaProvision;
 import controlador.OOrdenTraspaso;
 import modelo.MFiltraLote;
 import modelo.MOrdenLimpia;
@@ -85,6 +87,7 @@ public class AgregarOrdenLimpia extends JFrame {
 	private JLabel lblKgLimpios;
 	private JTextField tfDeposito;
 	private List<OLote> listaAlm;
+	private String ubicacionLote;
 	/**
 	 * Launch the application.
 	 */
@@ -111,11 +114,11 @@ public class AgregarOrdenLimpia extends JFrame {
 			public void windowActivated(WindowEvent arg0) {
 				
 				MOrdenLimpia m=new MOrdenLimpia();
-				List<OOrdenLimpia> listalotes=m.getLotesMezcla();
+				List<OLoteN> listalotes=m.getLotesMezcla();
 				
-				for (int i=0;i<listalotes.size();i++) {
+				for (int i=1;i<listalotes.size();i++) {
 					
-					cbLote.addItem(listalotes.get(i).getLote());
+					cbLote.addItem(listalotes.get(i));
 					
 					
 				}
@@ -228,8 +231,7 @@ public class AgregarOrdenLimpia extends JFrame {
 			
 			if(e1.getStateChange()==ItemEvent.SELECTED) {
 				MOrdenLimpia m=new MOrdenLimpia();
-				List<OOrdenLimpia> listalotes=m.getLotesMezcla();
-				MFiltraLote m2=new MFiltraLote();
+				List<OLoteN> listalotes=m.getLotesMezcla();
 				listaAlm=new ArrayList<OLote>();
 				for (int i=0;i<listalotes.size();i++) {
 					
@@ -238,7 +240,7 @@ public class AgregarOrdenLimpia extends JFrame {
 					
 					
 					
-					if(listalotes.get(i).getTipo()==1) {
+					if(listalotes.get(i).getOrigen().equals("CREADO")) {
 						
 					
 						try {
@@ -250,7 +252,7 @@ public class AgregarOrdenLimpia extends JFrame {
 						
 
 					
-					}else if(listalotes.get(i).getTipo()==2){
+					}else if(listalotes.get(i).getOrigen().equals("COMPRADO")){
 				
 						try {
 							listaAlm=m.getKgLoteComprado(Integer.parseInt(cbLote.getSelectedItem().toString()));
@@ -790,10 +792,11 @@ public class AgregarOrdenLimpia extends JFrame {
 				
 				if(tfpanel3.getText().equals(""))tfpanel3.setText("0");
 				if(tfpanel4.getText().equals(""))tfpanel4.setText("0");
+				if(tfpanel5.getText().equals(""))tfpanel5.setText("0");
 				if(tfpanel6.getText().equals(""))tfpanel6.setText("0");
 				if(tfpanel7.getText().equals(""))tfpanel7.setText("0");
-				if(tfpanel5.getText().equals(""))tfpanel5.setText("0");
 				if(tfpanel8.getText().equals(""))tfpanel8.setText("0");
+				if(tfpanel3.getText().equals(""))tfpanel3.setText("0");
 				
 				lblTotalKG.setText((Integer.parseInt(tfpanel3.getText())+Integer.parseInt(tfpanel4.getText())+Integer.parseInt(tfpanel5.getText())
 						+Integer.parseInt(tfpanel6.getText())+Integer.parseInt(tfpanel7.getText())+Integer.parseInt(tfpanel8.getText()))+"");
@@ -825,55 +828,121 @@ public class AgregarOrdenLimpia extends JFrame {
 		JButton btnagregar = new JButton("Agregar");
 		btnagregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				MOrdenLimpia m=new MOrdenLimpia();
+				
 				
 				OOrdenLimpia n= new OOrdenLimpia(Integer.parseInt(tfCodigo.getText()), Integer.parseInt(tfEmpleado.getText()), Double.parseDouble(lblTotalKG.getText()), Integer.parseInt(cbLote.getSelectedItem().toString()),
 						 ParseFecha(tfFecha.getText()),Integer.parseInt(tfDeposito.getText()), Double.parseDouble(tfMerma.getText()));
 				m.setOrdenLimpia(n);
 				
-				if(tfpanel4.getText().isEmpty()==false) {
+			
+				Object obj=cbLote.getSelectedItem();
 				
-				OOrdenTraspaso trasp=new OOrdenTraspaso(0, Integer.parseInt(tfEmpleado.getText()), Double.parseDouble(tfpanel4.getText())
-						, 0, ParseFecha(tfFecha.getText()), listaAlm.get(0).getAlmacen(), 0);
+				
+			if (obj instanceof OLoteN) {
+					
+					OLoteN temp=(OLoteN)obj;
+				System.out.println(temp.toString()+Integer.parseInt(lblAlmacn.getText().replaceAll("[^0-9.]", "")));
+				if(temp.getOrigen().equals("CREADO")) {
+				
+				
+					
+				if (!tfpanel4.getText().equals("0")) {
+					
+				OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn.getText().replaceAll("[^0-9.]", "")),0,Double.parseDouble(tfpanel4.getText()),
+						"",0,Integer.parseInt(cbLote.getSelectedItem().toString()));
+						
+				System.out.println("llega pre");
 				m.SetLimpiaProvision(trasp);
 				
-				}else if (tfpanel5.getText().isEmpty()==false) {
+				}
+				if (!tfpanel5.getText().equals("0")) {
 					
-					OOrdenTraspaso trasp=new OOrdenTraspaso(0, Integer.parseInt(tfEmpleado.getText()), Double.parseDouble(tfpanel5.getText())
-							, 0, ParseFecha(tfFecha.getText()), listaAlm.get(1).getAlmacen(), 0);
-					
+				OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_1.getText().replaceAll("[^0-9.]", "")),0,Double.parseDouble(tfpanel5.getText()),
+							"",0,Integer.parseInt(cbLote.getSelectedItem().toString()));
+				
 								m.SetLimpiaProvision(trasp);
-				}else if (tfpanel6.getText().isEmpty()==false) {
+				}
+				if (!tfpanel6.getText().equals("0")) {
 								
-								OOrdenTraspaso trasp=new OOrdenTraspaso(0, Integer.parseInt(tfEmpleado.getText()), Double.parseDouble(tfpanel6.getText())
-										, 0, ParseFecha(tfFecha.getText()), listaAlm.get(2).getAlmacen(), 0);
-								
+					OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_2.getText().replaceAll("[^0-9.]", "")),0,Double.parseDouble(tfpanel6.getText()),
+							"",0,Integer.parseInt(cbLote.getSelectedItem().toString()));
 											m.SetLimpiaProvision(trasp);
-				}else if (tfpanel7.getText().isEmpty()==false) {
+				}
+				if (!tfpanel7.getText().equals("0")) {
 					
-					OOrdenTraspaso trasp=new OOrdenTraspaso(0, Integer.parseInt(tfEmpleado.getText()), Double.parseDouble(tfpanel7.getText())
-							, 0, ParseFecha(tfFecha.getText()), listaAlm.get(3).getAlmacen(), 0);
-					
+					OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_3.getText().replaceAll("[^0-9.]", "")),0,Double.parseDouble(tfpanel7.getText()),
+							"",0,Integer.parseInt(cbLote.getSelectedItem().toString()));
 								m.SetLimpiaProvision(trasp);
-				}else if (tfpanel8.getText().isEmpty()==false) {
+				}
+				if (!tfpanel8.getText().equals("0")) {
 					
-					OOrdenTraspaso trasp=new OOrdenTraspaso(0, Integer.parseInt(tfEmpleado.getText()), Double.parseDouble(tfpanel8.getText())
-							, 0, ParseFecha(tfFecha.getText()), listaAlm.get(4).getAlmacen(), 0);
-					
+					OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_4.getText().replaceAll("[^0-9.]", "")),0,Double.parseDouble(tfpanel8.getText()),
+							"",0,Integer.parseInt(cbLote.getSelectedItem().toString()));
 								m.SetLimpiaProvision(trasp);
-				}else if (tfpanel3.getText().isEmpty()==false) {
+				}
+				if (!tfpanel3.getText().equals("0")) {
 					
-					OOrdenTraspaso trasp=new OOrdenTraspaso(0, Integer.parseInt(tfEmpleado.getText()), Double.parseDouble(tfpanel3.getText())
-							, 0, ParseFecha(tfFecha.getText()),listaAlm.get(5).getAlmacen(), 0);
+					OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_5.getText().replaceAll("[^0-9.]", "")),0,Double.parseDouble(tfpanel3.getText()),
+							"",0,Integer.parseInt(cbLote.getSelectedItem().toString()));
 					
 								m.SetLimpiaProvision(trasp);
 				}
+				}else if(temp.getOrigen().equals("COMPRADO")) {
+					
+					
+					if (!tfpanel4.getText().equals("0")) {
+						
+						
+						OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn.getText().replaceAll("[^0-9.]", "")),temp.getLote(),Double.parseDouble(tfpanel4.getText()),
+								"",0,0);
+						
+									m.SetLimpiaProvision(trasp);
+					}
+					
+					if (!tfpanel5.getText().equals("0")) {
+						
+						
+						OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_1.getText().replaceAll("[^0-9.]", "")),temp.getLote(),Double.parseDouble(tfpanel5.getText()),
+								"",0,0);
+						
+									m.SetLimpiaProvision(trasp);
+					}
+					if (!tfpanel6.getText().equals("0")) {
+									
+						OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_2.getText().replaceAll("[^0-9.]", "")),temp.getLote(),Double.parseDouble(tfpanel6.getText()),
+								"",0,0);
+												m.SetLimpiaProvision(trasp);
+					}
+					if (!tfpanel7.getText().equals("0")) {
+						
+						OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_3.getText().replaceAll("[^0-9.]", "")),temp.getLote(),Double.parseDouble(tfpanel7.getText()),
+								"",0,0);
+									m.SetLimpiaProvision(trasp);
+					}
+					if (!tfpanel8.getText().equals("0")) {
+						
+						OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_4.getText().replaceAll("[^0-9.]", "")),temp.getLote(),Double.parseDouble(tfpanel8.getText()),
+								"",0,Integer.parseInt(cbLote.getSelectedItem().toString()));
+									m.SetLimpiaProvision(trasp);
+					}
+					if (!tfpanel3.getText().equals("0")) {
+						
+						OOrdenLimpiaProvision trasp=new OOrdenLimpiaProvision(Integer.parseInt(lblAlmacn_5.getText().replaceAll("[^0-9.]", "")),temp.getLote(),Double.parseDouble(tfpanel3.getText()),
+								"",0,0);
+						
+									m.SetLimpiaProvision(trasp);
+					
+					
+					
+					
+				}
+					}
 	
 	
 	
 			}
-		});
+		}});
 		btnagregar.setBackground(Color.ORANGE);
 		btnagregar.setBounds(721, 644, 85, 23);
 		panel_1.add(btnagregar);
