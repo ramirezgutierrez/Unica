@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class OrdenCompra extends JPanel {
 
@@ -30,6 +31,7 @@ public class OrdenCompra extends JPanel {
 		lblproveedores.setBackground(Color.ORANGE);
 		
 		JButton btnOrdenDeCompra = new JButton("Orden de compra");
+		btnOrdenDeCompra.setIcon(new ImageIcon(OrdenCompra.class.getResource("/imagenes/IC_ORDEN_COMPRA.png")));
 		btnOrdenDeCompra.setBackground(Color.ORANGE);
 		btnOrdenDeCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -41,9 +43,6 @@ public class OrdenCompra extends JPanel {
 		
 		JButton btnosesabe = new JButton("-----");
 		btnosesabe.setBackground(Color.ORANGE);
-		
-		JButton btnModificarProveedor = new JButton("BORRAR ALMACEN");
-		btnModificarProveedor.setBackground(Color.ORANGE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -53,16 +52,13 @@ public class OrdenCompra extends JPanel {
 					.addComponent(btnOrdenDeCompra)
 					.addGap(18)
 					.addComponent(btnosesabe, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnModificarProveedor, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(315, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnModificarProveedor)
+						.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnosesabe)
 						.addComponent(btnOrdenDeCompra))
 					.addContainerGap(270, Short.MAX_VALUE))

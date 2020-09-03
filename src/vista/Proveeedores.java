@@ -16,6 +16,7 @@ import controlador.OPanelFondo;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Proveeedores extends JPanel {
 
@@ -35,6 +36,7 @@ public class Proveeedores extends JPanel {
 		lblproveedores.setBackground(Color.ORANGE);
 		
 		JButton btnAgregarProveedor = new JButton("Agregar proveedor");
+		btnAgregarProveedor.setIcon(new ImageIcon(Proveeedores.class.getResource("/imagenes/IC_PROVEEDOR_AGREGAR.png")));
 		btnAgregarProveedor.setBackground(Color.ORANGE);
 		btnAgregarProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -45,12 +47,15 @@ public class Proveeedores extends JPanel {
 		});
 		
 		JButton btnEliminarProveedor = new JButton("Eliminar proveedor");
+		btnEliminarProveedor.setIcon(new ImageIcon(Proveeedores.class.getResource("/imagenes/IC_PROVEEDOR_ELIMINAR.png")));
 		btnEliminarProveedor.setBackground(Color.ORANGE);
 		
 		JButton btnModificarProveedor = new JButton("Modificar proveedor");
+		btnModificarProveedor.setIcon(new ImageIcon(Proveeedores.class.getResource("/imagenes/IC_PROVEEDOR_ACTUALIZAR.png")));
 		btnModificarProveedor.setBackground(Color.ORANGE);
 		
 		JButton btnVerproveedores = new JButton("Ver proveedores");
+		btnVerproveedores.setIcon(new ImageIcon(Proveeedores.class.getResource("/imagenes/IC_PROVEEDOR_BUSCAR.png")));
 		btnVerproveedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				VerProveedores vp=new VerProveedores();
@@ -65,26 +70,26 @@ public class Proveeedores extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnAgregarProveedor)
-					.addGap(18)
-					.addComponent(btnEliminarProveedor, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnEliminarProveedor)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnModificarProveedor)
-					.addGap(18)
-					.addComponent(btnVerproveedores, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnVerproveedores, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(40))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAgregarProveedor)
 						.addComponent(btnEliminarProveedor)
 						.addComponent(btnModificarProveedor)
 						.addComponent(btnVerproveedores))
-					.addContainerGap(707, Short.MAX_VALUE))
+					.addContainerGap(661, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 

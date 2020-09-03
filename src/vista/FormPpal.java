@@ -63,6 +63,7 @@ public class FormPpal  {
 	 */
 	private void initialize() {
 		frmFlowIntegralSystem = new JFrame();
+		frmFlowIntegralSystem.setIconImage(Toolkit.getDefaultToolkit().getImage(FormPpal.class.getResource("/imagenes/BARRA_TITULO.png")));
 		
 		
 		frmFlowIntegralSystem.setTitle("Flow Integral System");
@@ -98,7 +99,7 @@ public class FormPpal  {
 		});
 		panel.setBackground(Color.ORANGE);
 		frmFlowIntegralSystem.getContentPane().add(panel, BorderLayout.NORTH);
-		frmFlowIntegralSystem.setSize(frmFlowIntegralSystem.getMaximumSize());
+		frmFlowIntegralSystem.setSize(new Dimension(1310, 1025));
 		panel.setMaximumSize(frmFlowIntegralSystem.getMaximumSize());
 		
 		JLabel lblUsuario = new JLabel("USUARIO");
@@ -123,6 +124,10 @@ public class FormPpal  {
 			}
 		});
 		lblicono_x.setIcon(new ImageIcon("C:\\Users\\ramir\\Desktop\\Harinera\\imagenes\\cerrar1peq.png"));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(new Color(0,0,0,0));
+		lblNewLabel.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/LOGO_GRANDE.png")));
 		//lblUsuario.setBorder(BorderFactory.createLineBorder(Color.black));
 		//lblUsuario.setBackground(Color.ORANGE);
 		
@@ -131,34 +136,38 @@ public class FormPpal  {
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(1383, Short.MAX_VALUE)
+					.addGap(46)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 633, GroupLayout.PREFERRED_SIZE)
+					.addGap(151)
 					.addComponent(lblicono_usu)
-					.addGap(18)
+					.addGap(50)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblUsuario, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblAdministrador, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
-					.addGap(83)
+					.addGap(58)
 					.addComponent(lblicono_x)
-					.addGap(29))
+					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-							.addComponent(lblicono_usu)
-							.addContainerGap())
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(8)
-							.addComponent(lblUsuario, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblAdministrador, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-							.addGap(19))))
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblicono_x, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(27, Short.MAX_VALUE))
+							.addGap(21)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblicono_usu)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblUsuario, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblAdministrador, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap(65, Short.MAX_VALUE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblicono_x, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap(65, Short.MAX_VALUE))))))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -174,6 +183,7 @@ public class FormPpal  {
 			}
 		});
 		JToggleButton desplegable = new JToggleButton("");
+		desplegable.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/RECEPCION.png")));
 		desplegable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -184,7 +194,8 @@ public class FormPpal  {
 		});
 		Desp_rec.setVisible(false);
 		
-		JLabel lblproveedores = new JLabel("  PROVEEDORES  ");
+		JLabel lblproveedores = new JLabel("      PROVEEDORES  ");
+		lblproveedores.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_PROVEEDOR.png")));
 		
 		lblproveedores.addMouseListener(new MouseAdapter() {
 			@Override
@@ -206,7 +217,7 @@ public class FormPpal  {
 		
 		lblproveedores.setFont(new Font("SimSun", Font.BOLD, 14));
 		
-		JLabel lblrecepcion = new JLabel("   RECEPCI\u00D3N");
+		JLabel lblrecepcion = new JLabel("       RECEPCI\u00D3N");
 		lblrecepcion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -226,7 +237,8 @@ public class FormPpal  {
 		lblrecepcion.setBorder(BorderFactory.createLineBorder(Color.black));
 		lblrecepcion.setBackground(Color.ORANGE);
 		
-		JLabel lblmezcla = new JLabel("    MEZCLA ");
+		JLabel lblmezcla = new JLabel("PRETRATAMIENTO DE GRANO");
+		lblmezcla.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_COMPOSICION_.png")));
 		lblmezcla.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -242,7 +254,8 @@ public class FormPpal  {
 		lblmezcla.setBorder(BorderFactory.createLineBorder(Color.black));
 		lblmezcla.setBackground(Color.ORANGE);
 		
-		JLabel lblstrock = new JLabel("     STOCK ");
+		JLabel lblstrock = new JLabel("        STOCK ");
+		lblstrock.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_STOCK.png")));
 		lblstrock.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -258,7 +271,8 @@ public class FormPpal  {
 		lblstrock.setBorder(BorderFactory.createLineBorder(Color.black));
 		lblstrock.setBackground(Color.ORANGE);
 		
-		JLabel lblgastos = new JLabel("    GASTOS");
+		JLabel lblgastos = new JLabel("         GASTOS");
+		lblgastos.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_GASTOS.png")));
 		lblgastos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -275,7 +289,8 @@ public class FormPpal  {
 		lblgastos.setBorder(BorderFactory.createLineBorder(Color.black));
 		lblgastos.setBackground(Color.ORANGE);
 		
-		JLabel lblclientes = new JLabel("   CLIENTES");
+		JLabel lblclientes = new JLabel("      CLIENTES");
+		lblclientes.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_CLIENTES.png")));
 		lblclientes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -291,7 +306,8 @@ public class FormPpal  {
 		lblclientes.setBorder(BorderFactory.createLineBorder(Color.black));
 		lblclientes.setBackground(Color.ORANGE);
 		
-		JLabel lblventas = new JLabel("    VENTAS");
+		JLabel lblventas = new JLabel("         VENTAS");
+		lblventas.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_VENTAS.png")));
 		lblventas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -308,7 +324,8 @@ public class FormPpal  {
 		lblventas.setBorder(BorderFactory.createLineBorder(Color.black));
 		lblventas.setBackground(Color.ORANGE);
 		
-		JLabel lblchat = new JLabel("     CHAT");
+		JLabel lblchat = new JLabel("          CHAT");
+		lblchat.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_CHAT.png")));
 		lblchat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -333,48 +350,49 @@ public class FormPpal  {
 			gl_panel_opciones.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_opciones.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel_opciones.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblproveedores, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-						.addComponent(lblmezcla, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblchat, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblgastos, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblclientes, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblventas, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Desp_rec, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblstrock, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel_opciones.createSequentialGroup()
-							.addComponent(desplegable, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_panel_opciones.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblchat, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblclientes, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblventas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblgastos, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblstrock, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblmezcla, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(Desp_rec, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_panel_opciones.createSequentialGroup()
+							.addComponent(desplegable, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblrecepcion, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+							.addComponent(lblrecepcion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(lblproveedores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+					.addContainerGap(31, Short.MAX_VALUE))
 		);
 		gl_panel_opciones.setVerticalGroup(
 			gl_panel_opciones.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_opciones.createSequentialGroup()
-					.addGap(68)
-					.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(106)
-					.addGroup(gl_panel_opciones.createParallelGroup(Alignment.LEADING)
-						.addComponent(desplegable, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblrecepcion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(Desp_rec, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap()
+					.addComponent(lblproveedores, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(lblmezcla, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(58)
-					.addComponent(lblstrock, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(55)
-					.addComponent(lblgastos, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(63)
-					.addComponent(lblclientes, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(54)
-					.addComponent(lblventas, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(61)
-					.addComponent(lblchat, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addGroup(gl_panel_opciones.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblrecepcion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(desplegable, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(Desp_rec, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblmezcla, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblstrock, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblgastos, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblventas)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblclientes)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblchat)
+					.addContainerGap())
 		);
 		
-		JLabel lblAlmacenes = new JLabel("ALMACENES");
+		JLabel lblAlmacenes = new JLabel("        ALMACENES");
+		lblAlmacenes.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/RECEPCION.png")));
 		lblAlmacenes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -385,14 +403,15 @@ public class FormPpal  {
 				desplegable.setSelected(false);
 			}
 		});
-		lblAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlmacenes.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAlmacenes.setOpaque(true);
 		lblAlmacenes.setForeground(Color.BLACK);
 		lblAlmacenes.setFont(new Font("SimSun", Font.BOLD, 10));
 		lblAlmacenes.setBorder(BorderFactory.createLineBorder(Color.black));
 		lblAlmacenes.setBackground(Color.ORANGE);
 		
-		JLabel lblCompraDeGrano = new JLabel("COMPRA DE GRANO");
+		JLabel lblCompraDeGrano = new JLabel("       COMPRA DE GRANO");
+		lblCompraDeGrano.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_COMPRA_GRANO.png")));
 		lblCompraDeGrano.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -405,7 +424,6 @@ public class FormPpal  {
 				
 			}
 		});
-		lblCompraDeGrano.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCompraDeGrano.setOpaque(true);
 		lblCompraDeGrano.setForeground(Color.BLACK);
 		lblCompraDeGrano.setFont(new Font("SimSun", Font.BOLD, 10));
@@ -413,6 +431,7 @@ public class FormPpal  {
 		lblCompraDeGrano.setBackground(Color.ORANGE);
 		
 		JLabel lblMovimientoDeAlmacenes = new JLabel("MOVIMIENTO DE ALMACENES");
+		lblMovimientoDeAlmacenes.setIcon(new ImageIcon(FormPpal.class.getResource("/imagenes/IC_MOVIMIENTO_ALMACEN.png")));
 		lblMovimientoDeAlmacenes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -426,7 +445,6 @@ public class FormPpal  {
 				
 			}
 		});
-		lblMovimientoDeAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMovimientoDeAlmacenes.setOpaque(true);
 		lblMovimientoDeAlmacenes.setForeground(Color.BLACK);
 		lblMovimientoDeAlmacenes.setFont(new Font("SimSun", Font.BOLD, 10));
@@ -435,25 +453,29 @@ public class FormPpal  {
 		GroupLayout gl_Desp_rec = new GroupLayout(Desp_rec);
 		gl_Desp_rec.setHorizontalGroup(
 			gl_Desp_rec.createParallelGroup(Alignment.LEADING)
-				.addComponent(lblAlmacenes, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-				.addComponent(lblCompraDeGrano, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-				.addComponent(lblMovimientoDeAlmacenes, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+				.addGroup(gl_Desp_rec.createSequentialGroup()
+					.addGroup(gl_Desp_rec.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(lblMovimientoDeAlmacenes, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblCompraDeGrano, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblAlmacenes, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
+					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		gl_Desp_rec.setVerticalGroup(
 			gl_Desp_rec.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Desp_rec.createSequentialGroup()
-					.addComponent(lblAlmacenes, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblAlmacenes, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblCompraDeGrano, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblCompraDeGrano, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblMovimientoDeAlmacenes, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addComponent(lblMovimientoDeAlmacenes, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
 		);
 		Desp_rec.setLayout(gl_Desp_rec);
 		panel_opciones.setLayout(gl_panel_opciones);
 		
 		panel_card = new JPanel();
 		panel_card.add(p);
+		p.add(lblNewLabel_2);
+		lblNewLabel_2.setBackground(new Color(0, 0, 0, 0));
 		panel_card.setBackground(new Color(255, 255, 255));
 		frmFlowIntegralSystem.getContentPane().add(panel_card, BorderLayout.CENTER);
 		panel_card.setLayout(new CardLayout(0, 0));
@@ -462,6 +484,10 @@ public class FormPpal  {
 		lblBienvenidoFlowIntegral.setFont(new Font("SimSun", Font.PLAIN, 30));
 		lblBienvenidoFlowIntegral.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_card.add(lblBienvenidoFlowIntegral, "name_2695754230899");
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBackground(new Color(0, 0, 0, 0));
+		frmFlowIntegralSystem.getContentPane().add(lblNewLabel_1, BorderLayout.SOUTH);
 		
 		
 		
@@ -487,4 +513,5 @@ public class FormPpal  {
 	
 	JPanel panel_card =new JPanel();
 	private int x,y;
+	private final JLabel lblNewLabel_2 = new JLabel("");
 }

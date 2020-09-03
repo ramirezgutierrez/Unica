@@ -14,7 +14,7 @@ public class OPanelFondo extends JPanel {
 	
 	public OPanelFondo() {
 		
-		fondo=this.getClass().getResource("/imagenes/harina.jpg");
+		fondo=this.getClass().getResource("/imagenes/harina.png");
 		
 		imagen=new ImageIcon(fondo).getImage();
 		
